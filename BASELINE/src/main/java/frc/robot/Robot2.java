@@ -11,17 +11,17 @@ public class Robot2 extends TimedRobot {
     int fr_chan = 1;
     int bl_chan = 2;
     int br_chan = 3;
-    int joyport = 0;
+    int jport1 = 0;
+    int jport2 = 1;
 
   //Initializaion of components
-    Joystick joystick = new Joystick(joyport);
-    DriveBase drive = new DriveBase(0, 0, fl_chan, fr_chan, bl_chan, br_chan);
-    double conx = joystick.getX();
-    double cony = joystick.getY();
-    drive.arcadeDrive(conx, cony);
+    Joystick Stick1 = new Joystick(jport1);
+    Joystick Stick2 = new Joystick(jport2);
+    DriveBase robotdrive = new DriveBase(0, 1, 2, 3);
+    
+    
 
-    Camera cambruh = new Camera("cam", 0);
-    cambruh.dashview();
+    
 
 
 
@@ -40,9 +40,11 @@ public class Robot2 extends TimedRobot {
   //when robot is in normal control mode...
   @Override
   public void teleopPeriodic() {
-    drive.arcadeDrive(conx, cony);
+    double S1X = Stick1.getX();
+    double S1Y = Stick1.getY();
+    robotdrive.arcade_drive(S1X, S1Y);
   }
-
+    
   //when robot is in autonomous mode...
   @Override
   public void autonomousInit() {
