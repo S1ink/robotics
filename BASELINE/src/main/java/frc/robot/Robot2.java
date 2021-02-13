@@ -1,8 +1,13 @@
 package frc.robot;
+
 //imports>>>
-  //general
-  import edu.wpi.first.wpilibj.TimedRobot;
-  import edu.wpi.first.wpilibj.Joystick;
+//general
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PWMVictorSPX;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
 //CODE>>>
 public class Robot2 extends TimedRobot {
@@ -17,9 +22,19 @@ public class Robot2 extends TimedRobot {
   //Initializaion of components
     Joystick Stick1 = new Joystick(jport1);
     Joystick Stick2 = new Joystick(jport2);
-    DriveBase robotdrive = new DriveBase(0, 1, 2, 3);
+    SpeedController drivefl = new PWMVictorSPX(fl_chan);
+    SpeedController drivebl = new PWMVictorSPX(bl_chan);
+    SpeedController drivefr = new PWMVictorSPX(fr_chan);
+    SpeedController drivebr = new PWMVictorSPX(br_chan);
+    SpeedControllerGroup left = new SpeedControllerGroup(drivefl, drivebl);
+    SpeedControllerGroup right = new SpeedControllerGroup(drivefr, drivebr);
+    DifferentialDrive robotdrive = new DifferentialDrive(left, right);
     
-    
+    double S1X = Stick1.getX();
+    double S1Y = Stick1.getY();
+    double S1t = Stick1.getPort();
+
+    DriveBase robot = new DriveBase(robotdrive);
 
     
 
@@ -40,9 +55,7 @@ public class Robot2 extends TimedRobot {
   //when robot is in normal control mode...
   @Override
   public void teleopPeriodic() {
-    double S1X = Stick1.getX();
-    double S1Y = Stick1.getY();
-    robotdrive.arcade_drive(S1X, S1Y);
+    
   }
     
   //when robot is in autonomous mode...
@@ -54,5 +67,10 @@ public class Robot2 extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
 
+  }
+
+  @Override
+  public void testPeriodic(){
+    System.out.println(S1t);
   }
 }
