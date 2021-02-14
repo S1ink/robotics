@@ -4,17 +4,26 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.I2C;
+
 public final class Constants {
     //controller 1 (xbox)
     public static final int controller1_port = 0;
 	public static final int c1_left_Y = 1;
     public static final int c1_right_Y = 5;
+	
 	//drivebase motor channels
     public static int front_left_chan = 0;
     public static int front_right_chan = 1;
     public static int back_left_chan = 2;
     public static int back_right_chan = 3;
 
+    //colorsensor
+    public static final I2C.Port colorsensor_port = I2C.Port.kOnboard;
+    public static double[] yellow = {0.582, 0.382, 0.957, 0.757, 0.082, 0.282};
+    public static double[] green = {0.49, 0.49, 0.86, 0.79, 0.38, 0.17};
+    public static double[] cyan = {0.48, 0.18, 0.8, 0.67, 0.75, 0.4};
+    public static double[] red = {0.82, 0.48, 0.8, 0.54, 0.75, 0.18};
 }
 
 //Project notes>>>
