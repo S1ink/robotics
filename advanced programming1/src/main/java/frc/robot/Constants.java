@@ -18,12 +18,13 @@ public final class Constants {
     public static int back_left_chan = 2;
     public static int back_right_chan = 3;
 
-    //colorsensor
+    //colorsensor 
     public static final I2C.Port colorsensor_port = I2C.Port.kOnboard;
-    public static double[] yellow = {0.582, 0.382, 0.957, 0.757, 0.082, 0.282};
-    public static double[] green = {0.49, 0.49, 0.86, 0.79, 0.38, 0.17};
-    public static double[] cyan = {0.48, 0.18, 0.8, 0.67, 0.75, 0.4};
-    public static double[] red = {0.82, 0.48, 0.8, 0.54, 0.75, 0.18};
+    public static double[] yellow = {0.582, 0.382, 0.957, 0.757, 0.082, 0.282};     //calibration arrays are in the form of the 
+    public static double[] green = {0.49, 0.49, 0.86, 0.79, 0.38, 0.17};            //lowest followed by the highest 
+    public static double[] cyan = {0.48, 0.18, 0.8, 0.67, 0.75, 0.4};               //values of the individual RGB('s) that make 
+    public static double[] red = {0.82, 0.48, 0.8, 0.54, 0.75, 0.18};               //up the color that they are calibrating
+
 }
 
 //Project notes>>>
