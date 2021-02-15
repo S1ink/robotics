@@ -17,6 +17,7 @@ public class Robot extends TimedRobot {
   public static ColorSense colorsrc = new ColorSense();
   public static DB_TankDrive drive_periodic;
   public static PeriodiColor color_periodic;
+  public double dt;
 
 
 
@@ -31,6 +32,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
+    dt = getPeriod();
   }
 
 
@@ -39,7 +41,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     drive_periodic.schedule();
-    color_periodic.schedule();
+    //color_periodic.schedule();
   }
   @Override
   public void teleopPeriodic() {}

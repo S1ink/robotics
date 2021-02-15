@@ -24,7 +24,9 @@ public final class Constants {
     public static double[] green = {0.49, 0.49, 0.86, 0.79, 0.38, 0.17};            //lowest followed by the highest 
     public static double[] cyan = {0.48, 0.18, 0.8, 0.67, 0.75, 0.4};               //values of the individual RGB('s) that make 
     public static double[] red = {0.82, 0.48, 0.8, 0.54, 0.75, 0.18};               //up the color that they are calibrating
-
+    
+    //IMU/GYRO
+    public static final int gyro_port = 0;
 }
 
 //Project notes>>>
