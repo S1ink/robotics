@@ -27,6 +27,11 @@ public final class Constants {
     
     //IMU/GYRO
     public static final int gyro_port = 0;
+
+    //camera array
+	public static final int cam1_port = 0;
+	public static final int cam2_port = 1;
+	public static final int cam3_port = 2;
 }
 
 //Project notes>>>
