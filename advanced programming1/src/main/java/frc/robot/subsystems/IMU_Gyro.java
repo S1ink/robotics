@@ -5,8 +5,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.analog.adis16470.frc.ADIS16470_IMU;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import frc.robot.Constants;
+//import edu.wpi.first.wpilibj.AnalogGyro;
+//import frc.robot.Constants;
 
 public class IMU_Gyro extends SubsystemBase {
   private ADIS16470_IMU imu = new ADIS16470_IMU();

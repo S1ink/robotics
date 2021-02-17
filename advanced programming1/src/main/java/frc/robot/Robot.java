@@ -5,7 +5,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.DB_TankDrive;
+import frc.robot.commands.Drive_Periodic;
 import frc.robot.commands.PeriodiColor;
 import frc.robot.subsystems.ColorSense;
 import frc.robot.subsystems.DriveControl;
@@ -15,7 +15,7 @@ public class Robot extends TimedRobot {
   public static RobotContainer robotContainer;
   public static DriveControl db_main = new DriveControl();
   public static ColorSense colorsrc = new ColorSense();
-  public static DB_TankDrive drive_periodic;
+  public static Drive_Periodic drive_periodic;
   public static PeriodiColor color_periodic;
   public double dt;
 
@@ -25,7 +25,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     robotContainer = new RobotContainer();
-    drive_periodic = new DB_TankDrive();
+    drive_periodic = new Drive_Periodic();
     color_periodic = new PeriodiColor();
   }
   //remember to add "CommandScheduler.getInstance().run();" inside as this is necessary for anything depending on the scheduler to run

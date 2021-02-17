@@ -12,9 +12,25 @@ public class RobotContainer {
   XboxController controller1 = new XboxController(Constants.controller1_port);
 
   public double ControllerAxis_raw(int axis){
-    return controller1.getRawAxis(axis);
+    return (controller1.getRawAxis(axis));
+  }
+
+  public double ControllerAxis_offset(int axis, double offset){
+    return (controller1.getRawAxis(axis))+(offset);
+  }
+
+  public double ControllerAxis_multiplier(int axis, double mult){
+    return (controller1.getRawAxis(axis))*(mult);
   }
   
+  public double ControllerAxis_exponential(int axis, int ex){
+    double raw = controller1.getRawAxis(axis);
+    double ret = 1;
+    for (int i=0; i<ex; i++){
+      ret *= raw;
+    }
+    return raw;
+  }
   
   
   
