@@ -29,7 +29,7 @@ public class RobotContainer {
     for (int i=0; i<ex; i++){
       ret *= raw;
     }
-    return raw;
+    return ret;
   }
   
   
