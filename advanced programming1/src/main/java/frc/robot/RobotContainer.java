@@ -52,6 +52,7 @@ public class RobotContainer {
     for (int i=0; i<ex_power; i++){
       exa *= threshold;
     }
+<<<<<<< HEAD
     double ret = Math.copySign(((Math.abs(multiplier))*(Math.copySign(Math.abs(ex), raw))-(Math.copySign(exa, raw))), multiplier*raw);
     if (Math.abs(raw)<threshold){
       ret = 0.0;
@@ -73,6 +74,10 @@ public class RobotContainer {
       ex *= raw;
     }
     double ret = multiplier*(Math.copySign(Math.abs(ex), raw));
+=======
+    double ret = multiplier*(Math.copySign(Math.abs(ex), raw))-(Math.copySign(exa, raw));
+    //double ret = Math.copySign(((Math.abs(multiplier))*(Math.copySign(Math.abs(ex), raw))-(Math.copySign(exa, raw))), multiplier);
+>>>>>>> 548e601e99d20b95a55f4f0e9a6be014fbfb5c6e
     if (Math.abs(raw)<threshold){
       ret = 0.0;
     }
