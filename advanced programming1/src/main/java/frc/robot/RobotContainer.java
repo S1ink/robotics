@@ -53,6 +53,7 @@ public class RobotContainer {
       exa *= threshold;
     }
     double ret = multiplier*(Math.copySign(Math.abs(ex), raw))-(Math.copySign(exa, raw));
+    //double ret = Math.copySign(((Math.abs(multiplier))*(Math.copySign(Math.abs(ex), raw))-(Math.copySign(exa, raw))), multiplier);
     if (Math.abs(raw)<threshold){
       ret = 0.0;
     }
