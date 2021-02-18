@@ -41,18 +41,38 @@ public class RobotContainer {
    * this fuction is set up so that instead of cutting off all output values (output) bellow the deadzone (input), the first value above the deadzone (output)
    * range will be very close to zero (simulating the "graph" of the function of the IO in this case being raised above the horizontal 
    * line that is the deadzone). Use this Desmos graph as a reference as a general representation of the behavior: https://www.desmos.com/calculator/hp7hs46fhj */
-  public double ControllerAxis_opfunc(int axis, double deadzone, double multiplier, int power){
+  public double OPControllerFunc1(int axis, double deadzone, double multiplier, int ex_power){
     double raw = controller1.getRawAxis(axis);
     double threshold = Math.abs(deadzone - (int)deadzone);
     double ex = 1;
     double exa = 1;
-    for (int i=0; i<power; i++){
+    for (int i=0; i<ex_power; i++){
       ex *= raw;
     }
-    for (int i=0; i<power; i++){
+    for (int i=0; i<ex_power; i++){
       exa *= threshold;
     }
-    double ret = multiplier*(Math.copySign(Math.abs(ex), raw))-(Math.copySign(exa, raw));
+    double ret = Math.copySign(((Math.abs(multiplier))*(Math.copySign(Math.abs(ex), raw))-(Math.copySign(exa, raw))), multiplier*raw);
+    if (Math.abs(raw)<threshold){
+      ret = 0.0;
+    }
+    return ret;
+  }
+
+  /**THE MOTHER OF ALL CONTROLLER ADJUSTMENT FUNCTIONS. This function accomplishes the same thing as "OPControllerFunc1", 
+   * except that instead of the function starting just above the deadzone, (the origin of the function is moved to where 
+   * the deadzone ends) the function starts at (0,0), and all outputs that would correlate to inputs below the deadzone 
+   * are just cut out. This function should be used if deadzones are wanted but the maximum output does not want to be altered.
+   * Use this Desmos graph as a reference as a general representation of the behavior: https://www.desmos.com/calculator/hp7hs46fhj 
+   * (to visualize, only move the "y=" slider, but not the slider for addition in the main funciton)*/
+  public double OPControllerFunc2(int axis, double deadzone, double multiplier, int ex_power){
+    double raw = controller1.getRawAxis(axis);
+    double threshold = Math.abs(deadzone - (int)deadzone);
+    double ex = 1;
+    for (int i=0; i<ex_power; i++){
+      ex *= raw;
+    }
+    double ret = multiplier*(Math.copySign(Math.abs(ex), raw));
     if (Math.abs(raw)<threshold){
       ret = 0.0;
     }

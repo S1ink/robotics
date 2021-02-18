@@ -21,10 +21,10 @@ public class Drive_Periodic extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double lstick_Y = Robot.robotContainer.ControllerAxis_opfunc(Constants.c1_left_Y, Constants.deadzone, Constants.c1_left_Y_mult, Constants.power);
-    double rstick_Y = Robot.robotContainer.ControllerAxis_opfunc(Constants.c1_right_Y, Constants.deadzone, Constants.c1_right_Y_mult, Constants.power);
-    double lstick_X = Robot.robotContainer.ControllerAxis_opfunc(Constants.c1_left_X, Constants.deadzone, Constants.c1_left_X_mult, Constants.power);
-    double rstick_X = Robot.robotContainer.ControllerAxis_opfunc(Constants.c1_right_X, Constants.deadzone, Constants.c1_right_X_mult, Constants.power);
+    double lstick_Y = Robot.robotContainer.OPControllerFunc1(Constants.c1_left_Y, Constants.deadzone, Constants.c1_left_Y_mult, Constants.power);
+    double rstick_Y = Robot.robotContainer.OPControllerFunc1(Constants.c1_right_Y, Constants.deadzone, Constants.c1_right_Y_mult, Constants.power);
+    double lstick_X = Robot.robotContainer.OPControllerFunc1(Constants.c1_left_X, Constants.deadzone, Constants.c1_left_X_mult, Constants.power);
+    double rstick_X = Robot.robotContainer.OPControllerFunc1(Constants.c1_right_X, Constants.deadzone, Constants.c1_right_X_mult, Constants.power);
     if(Constants.db_drivemode == "tank"){
       Robot.db_main.tank_drive(lstick_Y, rstick_Y, 0);
     }else if(Constants.db_drivemode == "arcade"){

@@ -54,7 +54,7 @@ public final class Constants {
             public static double c1_left_X_mult = 1;
             public static double c1_right_X_mult = 1;
             //deadzone on controller sticks -> only set for drivebase control atm
-            public static double deadzone = 0.5;
+            public static double deadzone = 0.4;
             //takes the controller stick output value to the power of this number (along with multiplying it by the above values)
             public static int power = 2;
 
