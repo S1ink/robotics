@@ -1,2 +1,3 @@
 - add button command to switch between driving modes
 - change input values for the preiodic drive command to use the multiplier method for the controller
+- chane "opfunc" so that the absolute value of the multiplier is added at the end, and that when the multiplier is multiplied to the raw after exponential stuff it is the absolute value, not the raw multiplier. 
