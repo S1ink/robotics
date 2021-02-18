@@ -25,7 +25,8 @@ public class DriveControl extends SubsystemBase {
   public DriveControl(
 
   ){
-    db_right.setInverted(true);
+    db_right.setInverted(Constants.db_right_invt);
+    db_left.setInverted(Constants.db_left_invt);
   }
 
   @Override
@@ -40,11 +41,11 @@ public class DriveControl extends SubsystemBase {
 
   //>>>Add scaling mode functions later, and use them based on the "scale_mode" parameter<<<
   public void tank_drive(double left_speed, double right_speed, int scale_mode){
-    drive_main.tankDrive(left_speed, right_speed);
+    drive_main.tankDrive(left_speed, right_speed, Constants.general_squareinp);
   }
 
   public void arcade_drive(double x_axis, double y_axis){
-    drive_main.arcadeDrive(x_axis, y_axis);
+    drive_main.arcadeDrive(x_axis, y_axis, Constants.general_squareinp);
   }
   //Define any functions that involve the drive-motors>>>
   

@@ -9,7 +9,6 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class Drive_Periodic extends CommandBase {
-  /** Creates a new DB_TankDrive. */
   public Drive_Periodic() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.db_main);
@@ -22,15 +21,17 @@ public class Drive_Periodic extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double lstick_Y = Robot.robotContainer.ControllerAxis_raw(Constants.c1_left_Y);
-    double rstick_Y = Robot.robotContainer.ControllerAxis_raw(Constants.c1_right_Y);
-    double lstick_X = Robot.robotContainer.ControllerAxis_raw(Constants.c1_left_X);
-    double rstick_X = Robot.robotContainer.ControllerAxis_raw(Constants.c1_right_X);
+    double lstick_Y = Robot.robotContainer.ControllerAxis_opfunc(Constants.c1_left_Y, Constants.deadzone, Constants.c1_left_Y_mult, Constants.power);
+    double rstick_Y = Robot.robotContainer.ControllerAxis_opfunc(Constants.c1_right_Y, Constants.deadzone, Constants.c1_right_Y_mult, Constants.power);
+    double lstick_X = Robot.robotContainer.ControllerAxis_opfunc(Constants.c1_left_X, Constants.deadzone, Constants.c1_left_X_mult, Constants.power);
+    double rstick_X = Robot.robotContainer.ControllerAxis_opfunc(Constants.c1_right_X, Constants.deadzone, Constants.c1_right_X_mult, Constants.power);
     if(Constants.db_drivemode == "tank"){
       Robot.db_main.tank_drive(lstick_Y, rstick_Y, 0);
     }else if(Constants.db_drivemode == "arcade"){
       Robot.db_main.arcade_drive(lstick_X, lstick_Y);
     }
+    //debug
+    //System.out.println(String.valueOf(Robot.robotContainer.ControllerAxis_raw(1)));
    }
 
   // Called once the command ends or is interrupted.

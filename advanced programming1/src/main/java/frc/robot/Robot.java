@@ -7,14 +7,24 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.Drive_Periodic;
 import frc.robot.commands.PeriodiColor;
+import frc.robot.subsystems.CameraArray;
 import frc.robot.subsystems.ColorSense;
 import frc.robot.subsystems.DriveControl;
+import frc.robot.subsystems.IMU_Gyro;
+import frc.robot.subsystems.UltrasonicArray;
 
 public class Robot extends TimedRobot {
   //Define containers and commands
   public static RobotContainer robotContainer;
+
+  //subsystem instance creation
   public static DriveControl db_main = new DriveControl();
   public static ColorSense colorsrc = new ColorSense();
+  public static IMU_Gyro spi_imu = new IMU_Gyro();
+  public static CameraArray camarr = new CameraArray();
+  public static UltrasonicArray sonic = new UltrasonicArray();
+
+  //variable declaration
   public static Drive_Periodic drive_periodic;
   public static PeriodiColor color_periodic;
   public double dt;

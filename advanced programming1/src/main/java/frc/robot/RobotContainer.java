@@ -6,6 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class RobotContainer {
   //Define controllers here
@@ -28,6 +30,31 @@ public class RobotContainer {
     double ret = 1;
     for (int i=0; i<ex; i++){
       ret *= raw;
+    }
+    return ret;
+  }
+
+  /**THE MOTHER OF ALL CONTROLLER ADJUSTMENT FUNCTIONS. Takes in the axis of the desired stick, 
+   * the deadzone value (if this number is bigger than 1 it will automatically cut off the "mixed number part"so it will be less than 1), 
+   * the multiplier value (if this is negative then it inverts the output), and the power (the number of times the raw stick input
+   * will be multiplied by itself to simulate more fine control at lower values, but less control at higher ones). At the moment 
+   * this fuction is set up so that instead of cutting off all output values (output) bellow the deadzone (input), the first value above the deadzone (output)
+   * range will be very close to zero (simulating the "graph" of the function of the IO in this case being raised above the horizontal 
+   * line that is the deadzone). Use this Desmos graph as a reference as a general representation of the behavior: https://www.desmos.com/calculator/hp7hs46fhj */
+  public double ControllerAxis_opfunc(int axis, double deadzone, double multiplier, int power){
+    double raw = controller1.getRawAxis(axis);
+    double threshold = Math.abs(deadzone - (int)deadzone);
+    double ex = 1;
+    double exa = 1;
+    for (int i=0; i<power; i++){
+      ex *= raw;
+    }
+    for (int i=0; i<power; i++){
+      exa *= threshold;
+    }
+    double ret = multiplier*(Math.copySign(Math.abs(ex), raw))-(Math.copySign(exa, raw));
+    if (Math.abs(raw)<threshold){
+      ret = 0.0;
     }
     return ret;
   }

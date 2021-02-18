@@ -8,30 +8,30 @@ import edu.wpi.first.wpilibj.I2C;
 
 public final class Constants {
     //Hardware config
-        //controller 1 (xbox)
+        //controller 1 (xbox) -> port, and axis(es?)
         public static final int controller1_port = 0;
         public static final int c1_left_Y = 1;
         public static final int c1_right_Y = 5;
         public static final int c1_left_X = 0;
         public static final int c1_right_X = 4;
         
-        //drivebase motor channels
+        //drivebase motors (channels)
         public static int front_left_chan = 0;
         public static int front_right_chan = 1;
         public static int back_left_chan = 2;
         public static int back_right_chan = 3;
 
-        //other motors
+        //Talon SRX's (can id's)
         public static int falcon1_canid = 0;
         public static int falcon2_canid = 1;
 
-        //colorsensor 
+        //colorsensor (port, although there is kind of only one)
         public static final I2C.Port colorsensor_port = I2C.Port.kOnboard;
                 
-        //IMU/gyro
+        //IMU/gyro (port)
         public static final int gyro_port = 0;
 
-        //camera array
+        //camera array (ports)
         public static final int cam1_port = 0;
         public static final int cam2_port = 1;
         public static final int cam3_port = 2;
@@ -40,8 +40,23 @@ public final class Constants {
         public static final int ultrasonic1_port = 0;
     
     //Software config/calibration
-        //drivebase drivecontrol mode -> So far options are only "tank", and "arcade". 
-        public static String db_drivemode = "tank";
+        //drivebase motor/controlling options
+            //drivebase drivecontrol mode -> So far options are only "tank", and "arcade". 
+            public static String db_drivemode = "tank";
+            //sets automatic squaring inside the tankdrive and arcadedrive functions (turned off if it is aready done in controller input function)
+            public static boolean general_squareinp = false;
+            //invert boolean for each side
+            public static boolean db_left_invt = false;
+            public static boolean db_right_invt = true;
+            //multipliers for each stick axis
+            public static double c1_left_Y_mult = 1;
+            public static double c1_right_Y_mult = 1;
+            public static double c1_left_X_mult = 1;
+            public static double c1_right_X_mult = 1;
+            //deadzone on controller sticks -> only set for drivebase control atm
+            public static double deadzone = 0.5;
+            //takes the controller stick output value to the power of this number (along with multiplying it by the above values)
+            public static int power = 2;
 
         //colorsensor calibration arrays
         public static double[] yellow = {0.582, 0.382, 0.957, 0.757, 0.082, 0.282};     //calibration arrays are in the form of the 
