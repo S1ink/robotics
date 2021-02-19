@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   //Define controllers here
   XboxController controller1 = new XboxController(Constants.controller1_port);
+  JoystickButton testbutton = new JoystickButton(controller1, 0);
 
   public double ControllerAxis_raw(int axis){
     return (controller1.getRawAxis(axis));
@@ -48,8 +49,6 @@ public class RobotContainer {
     double exa = 1;
     for (int i=0; i<ex_power; i++){
       ex *= raw;
-    }
-    for (int i=0; i<ex_power; i++){
       exa *= threshold;
     }
     double ret = Math.copySign(((Math.abs(multiplier))*(Math.copySign(Math.abs(ex), raw))-(Math.copySign(exa, raw))), multiplier*raw);

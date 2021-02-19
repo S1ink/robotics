@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.analog.adis16470.frc.ADIS16470_IMU.ADIS16470CalibrationTime;
+import com.analog.adis16470.frc.ADIS16470_IMU.IMUAxis;
 import edu.wpi.first.wpilibj.I2C;
 
 public final class Constants {
@@ -14,6 +16,8 @@ public final class Constants {
         public static final int c1_right_Y = 5;
         public static final int c1_left_X = 0;
         public static final int c1_right_X = 4;
+        public static final int c1_left_trig = 2;
+        public static final int c1_right_trig = 3;
         
         //drivebase motors (channels)
         public static int front_left_chan = 0;
@@ -28,8 +32,10 @@ public final class Constants {
         //colorsensor (port, although there is kind of only one)
         public static final I2C.Port colorsensor_port = I2C.Port.kOnboard;
                 
-        //IMU/gyro (port)
+        //IMU/gyro
         public static final int gyro_port = 0;
+        public static final IMUAxis imu_yaw = null;
+        public static final ADIS16470CalibrationTime imu_caltime = null;
 
         //camera array (ports)
         public static final int cam1_port = 0;
@@ -41,8 +47,8 @@ public final class Constants {
     
     //Software config/calibration
         //drivebase motor/controlling options
-            //drivebase drivecontrol mode -> So far options are only "tank", and "arcade". 
-            public static String db_drivemode = "tank";
+            //drivebase drivecontrol mode -> Options include the following: tank, race, trigger, arcade
+            public static String db_drivemode = "race";
             //sets automatic squaring inside the tankdrive and arcadedrive functions (turned off if it is aready done in controller input function)
             public static boolean general_squareinp = false;
             //invert boolean for each side

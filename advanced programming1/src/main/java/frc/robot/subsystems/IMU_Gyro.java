@@ -5,6 +5,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.analog.adis16470.frc.ADIS16470_IMU;
+import frc.robot.Constants;
 //import edu.wpi.first.wpilibj.AnalogGyro;
 //import frc.robot.Constants;
 
@@ -15,11 +16,19 @@ public class IMU_Gyro extends SubsystemBase {
   
 
   /** Creates a new IMU_Gyro. */
-  public IMU_Gyro() {}
+  public IMU_Gyro() {
+    //imu.setYawAxis(Constants.imu_yaw);
+    //imu.configCalTime(Constants.imu_caltime);
+  }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  public double currentAngle(){
+    double ang = imu.getAngle();
+    return ang;
   }
 
   /**THIS METHOD IS MARKED AS V1 AS IT WAS COPIED FROM PREXISTING CODE AND MAY NEED CHANGES TO WORK PROPERLY IN SUBSYSTEM FORMAT    
