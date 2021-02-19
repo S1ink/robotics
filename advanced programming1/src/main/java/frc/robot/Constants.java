@@ -10,14 +10,24 @@ import edu.wpi.first.wpilibj.I2C;
 
 public final class Constants {
     //Hardware config
-        //controller 1 (xbox) -> port, and axis(es?)
-        public static final int controller1_port = 0;
-        public static final int c1_left_Y = 1;
-        public static final int c1_right_Y = 5;
-        public static final int c1_left_X = 0;
-        public static final int c1_right_X = 4;
-        public static final int c1_left_trig = 2;
-        public static final int c1_right_trig = 3;
+        //xbox controller
+            //port
+            public static final int xbox1_port = 0;
+            //buttons
+            public static final int xbox1_xbutton = 2;
+            public static final int xbox1_ybutton = 3;
+            public static final int xbox1_abutton = 0;
+            public static final int xbox1_bbutton = 1;
+            public static final int xbox1_menubutton = 4;
+            public static final int xbox1_homebutton = 5;
+            //stick axis(es?)
+            public static final int x1_left_Y = 1;
+            public static final int x1_right_Y = 5;
+            public static final int x1_left_X = 0;
+            public static final int x1_right_X = 4;
+            //triggers
+            public static final int x1_left_trig = 2;
+            public static final int x1_right_trig = 3;
         
         //drivebase motors (channels)
         public static int front_left_chan = 0;

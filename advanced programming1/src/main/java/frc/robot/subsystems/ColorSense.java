@@ -33,6 +33,18 @@ public class ColorSense extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
+  /**
+   * Get the raw colors from the colorsensor
+   * @return an array of double, the first index being the red value, the second the green value, and the third being the blue value;
+   */
+  public double[] rawcolors(){
+    double[] ret = {0.0, 0.0, 0.0};
+    ret[0] = colorsrc.getRed();
+    ret[1] = colorsrc.getGreen();
+    ret[2] = colorsrc.getBlue();
+    return ret;
+  }
+
   //needs some work, and thought on what should be returned, where, and how this will integrate elsewhere
   //Unsure about if using the "double arrays" for the color calibration will work at this point, further testing needed
   public String singleColor(){

@@ -5,13 +5,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 public class AutonomousRoutine extends CommandBase {
   /** Creates a new AutonomousRoutine. */
   public AutonomousRoutine() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.db_main);
+    addRequirements(RobotContainer.db_main);
   }
 
   // Called when the command is initially scheduled.

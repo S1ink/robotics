@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import frc.robot.Constants;
-import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 public class DriveTrain extends SubsystemBase {
   //DriveBase motors and groups setup
@@ -23,7 +23,7 @@ public class DriveTrain extends SubsystemBase {
   private DifferentialDrive drive_main = new DifferentialDrive(db_left, db_right);
 
 //Constructor method
-  /** Creates a new ExampleSubsystem. */
+  /** Creates a new DriveTrain. */
   public DriveTrain(){
     db_right.setInverted(Constants.db_right_invt);
     db_left.setInverted(Constants.db_left_invt);
@@ -66,7 +66,7 @@ public class DriveTrain extends SubsystemBase {
    * @param speed - the speed in which the motors will go throughout the turn
    */
   public void correcturn(double degrees, double speed){
-    double correct = Robot.spi_imu.currentAngle();
+    double correct = RobotContainer.spi_imu.currentAngle();
     double comparr[] = {correct};
     double diff = Math.abs(Math.abs(comparr[0]) - Math.abs(correct));
     double vectortarget = Math.copySign(diff, degrees);
