@@ -48,7 +48,8 @@ public class AutonomousRoutine extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.db_main.tank_drive(0, 0);
-    System.out.println(String.valueOf(fails));
+    //debug
+    //System.out.println(String.valueOf(fails));
   }
 
   // Returns true when the command should end.
