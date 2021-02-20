@@ -36,13 +36,20 @@ public class ColorSense extends SubsystemBase {
 
   /**
    * Get the raw colors from the colorsensor
+   * @param - can be 0 or 1, mode 0 returns the raw output from the colorsensor, while mode 1 returns the output after dividing the colors by the magnitude
    * @return an array of double, the first index being the red value, the second the green value, and the third being the blue value;
    */
-  public double[] rawcolors(){
+  public double[] rawcolors(int mode){
     double[] ret = {0.0, 0.0, 0.0};
-    ret[0] = colorsrc.getRed();
-    ret[1] = colorsrc.getGreen();
-    ret[2] = colorsrc.getBlue();
+    if(mode == 0){
+    ret[0] = Red;
+    ret[1] = Green;
+    ret[2] = Blue;
+    }else if(mode == 1){
+    ret[0] = red1;
+    ret[1] = green1;
+    ret[2] = blue1;
+    }
     return ret;
   }
 
@@ -57,7 +64,7 @@ public class ColorSense extends SubsystemBase {
 
   //needs some work, and thought on what should be returned, where, and how this will integrate elsewhere
   //Unsure about if using the "double arrays" for the color calibration will work at this point, further testing needed
-  public String singleColor(){
+  public String colorCompare(){
     if (red1<ycal[0] & red1>ycal[1] & green1<ycal[2] & green1>ycal[3] & blue1>ycal[4] & blue1<ycal[5]){
     return "Yellow";
     }else if (red1<gcal[0] & red1>gcal[1] & green1<gcal[2] & green1>gcal[3] & blue1<gcal[4] & blue1>gcal[5]){

@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.commands.AutonomousRoutine;
 import frc.robot.commands.TeleopDrive;
 import frc.robot.commands.SensorDebug;
+import frc.robot.commands.CancelAll;
 import frc.robot.subsystems.CameraArray;
 import frc.robot.subsystems.ColorSense;
 import frc.robot.subsystems.DriveTrain;
@@ -27,12 +28,14 @@ public class RobotContainer {
   public static AutonomousRoutine auto_routine;
   public static TeleopDrive teleop_drive;
   public static SensorDebug sense_periodic;
+  public static CancelAll stop;
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
       teleop_drive = new TeleopDrive();
       sense_periodic = new SensorDebug();
       auto_routine = new AutonomousRoutine();
+      stop = new CancelAll();
       // Configure the button bindings
       configureButtonBindings();
     }
@@ -43,7 +46,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    RobotContainer.input.menubutton.whenHeld(stop);
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

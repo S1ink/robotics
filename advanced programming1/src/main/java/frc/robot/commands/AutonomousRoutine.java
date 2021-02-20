@@ -2,17 +2,34 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+//SPLIT THIS FILE UP WHEN POSSIBLE, TO CREATE A COMMAND FOR EACH DIFFERENT AUTONOMOUS PROFILE
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class AutonomousRoutine extends CommandBase {
+  private Timer timeout = new Timer();
+  private TimerTask stop = new task();
+  private boolean cancel = false;
+  private boolean timer = false;
+  private int fails = 0;
+
+  private class task extends TimerTask{
+      public void run(){
+        //System.out.println("Timeout reached, Canceling...");
+        cancel = true;
+      }
+  }
+
   /** Creates a new AutonomousRoutine. */
   public AutonomousRoutine() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.db_main);
+    addRequirements(RobotContainer.colorsrc);
   }
 
   // Called when the command is initially scheduled.
@@ -31,12 +48,13 @@ public class AutonomousRoutine extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.db_main.tank_drive(0, 0);
+    System.out.println(String.valueOf(fails));
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return cancel;
   }
 
   /**
@@ -46,7 +64,7 @@ public class AutonomousRoutine extends CommandBase {
    * @param speed - the speed at which the robot will move when line-following
    */
   private void linefollow1(double linecolor[], double floorcolor[], double speed){
-    double colors[] = RobotContainer.colorsrc.rawcolors();
+    double colors[] = RobotContainer.colorsrc.rawcolors(1);
     double redsrc = colors[0];
     double greensrc = colors[1];
     double bluesrc = colors[2];
@@ -55,6 +73,10 @@ public class AutonomousRoutine extends CommandBase {
       (linecolor[2] < greensrc && greensrc < linecolor[3]) && 
       (linecolor[4] < bluesrc && bluesrc < linecolor[5])
     ){
+      if(timer){
+        timeout.cancel();
+        timer = false;
+      }
       RobotContainer.db_main.tank_drive((speed/2), speed);
     }else if(
       (floorcolor[0] < redsrc && redsrc < floorcolor[1]) &&
@@ -62,12 +84,20 @@ public class AutonomousRoutine extends CommandBase {
       (floorcolor[4] < bluesrc && bluesrc < floorcolor[5])
     ){
       RobotContainer.db_main.tank_drive(speed, (speed/2));
+      if(!timer){
+        timeout.schedule(stop, 5000);
+        timer = true;
+      }
     }else{
-      //maybe add timout here??
+      if(!timer){
+        timeout.schedule(stop, 2500);
+        timer = true;
+      }
       //comment this out if it isnt helpful, this is to maybe help the robot find the line if it is lost, or not starting exactly on the line
       RobotContainer.db_main.tank_drive((speed/2), (speed/2));
       //debug
-      // System.out.println("Line edge not detected");
+      //fails += 1;
+      System.out.println("Line edge not detected");
       // System.out.println(String.valueOf(redsrc));
       // System.out.println(String.valueOf(greensrc));
       // System.out.println(String.valueOf(bluesrc));
@@ -76,7 +106,7 @@ public class AutonomousRoutine extends CommandBase {
 
   private void linefollow2(double linecolor[], double speed){
       //this function is setup assuming the first colorsensor is on the front left of the robot
-      double colors1[] = RobotContainer.colorsrc.rawcolors();
+      double colors1[] = RobotContainer.colorsrc.rawcolors(1);
       double colors2[] = RobotContainer.colorsrc.rawcolors2();
       double red1 = colors1[0];
       double red2 = colors2[0];

@@ -7,11 +7,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class SensorDebug extends CommandBase {
-  /** Creates a new PeriodiColor. */
-  public SensorDebug() {
+public class CancelAll extends CommandBase {
+  /** Creates a new CancelAll. */
+  public CancelAll() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.colorsrc);
   }
 
   // Called when the command is initially scheduled.
@@ -21,15 +20,14 @@ public class SensorDebug extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    String color = RobotContainer.colorsrc.colorCompare();
-    System.out.println(color);
+    RobotContainer.auto_routine.cancel();
+    RobotContainer.sense_periodic.cancel();
+    RobotContainer.teleop_drive.cancel();
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    System.out.println("Interrupted");
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
