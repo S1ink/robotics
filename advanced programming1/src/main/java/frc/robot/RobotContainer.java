@@ -6,7 +6,7 @@ package frc.robot;
 
 import frc.robot.commands.AutonomousRoutine;
 import frc.robot.commands.TeleopDrive;
-import frc.robot.commands.PeriodiColor;
+import frc.robot.commands.SensorDebug;
 import frc.robot.subsystems.CameraArray;
 import frc.robot.subsystems.ColorSense;
 import frc.robot.subsystems.DriveTrain;
@@ -26,12 +26,12 @@ public class RobotContainer {
   //commmand declaration
   public static AutonomousRoutine auto_routine;
   public static TeleopDrive teleop_drive;
-  public static PeriodiColor color_periodic;
+  public static SensorDebug sense_periodic;
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
       teleop_drive = new TeleopDrive();
-      color_periodic = new PeriodiColor();
+      sense_periodic = new SensorDebug();
       auto_routine = new AutonomousRoutine();
       // Configure the button bindings
       configureButtonBindings();

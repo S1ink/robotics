@@ -7,9 +7,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class PeriodiColor extends CommandBase {
+public class SensorDebug extends CommandBase {
   /** Creates a new PeriodiColor. */
-  public PeriodiColor() {
+  public SensorDebug() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.colorsrc);
   }

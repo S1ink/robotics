@@ -11,6 +11,7 @@ import frc.robot.Constants;
 public class ColorSense extends SubsystemBase {
   //private
   private ColorSensorV3 colorsrc = new ColorSensorV3(Constants.colorsensor_port);
+  private ColorSensorV3 colorsrc2 = new ColorSensorV3(Constants.colorsensor2_port);     //WILL NEED FIXING IF THERE ARE ACTUALLY TWO COLORSENSORS
   private double magnitude(double red, double green, double blue)
       {return Math.sqrt(red*red + blue*blue + green*green);}
   private double Red = colorsrc.getRed();
@@ -42,6 +43,15 @@ public class ColorSense extends SubsystemBase {
     ret[0] = colorsrc.getRed();
     ret[1] = colorsrc.getGreen();
     ret[2] = colorsrc.getBlue();
+    return ret;
+  }
+
+  //WILL NEED FIXING IF THERE ARE ACTUALLY TWO COLORSENSORS
+  public double[] rawcolors2(){
+    double[] ret = {0.0, 0.0, 0.0};
+    ret[0] = colorsrc2.getRed();
+    ret[1] = colorsrc2.getGreen();
+    ret[2] = colorsrc2.getBlue();
     return ret;
   }
 
