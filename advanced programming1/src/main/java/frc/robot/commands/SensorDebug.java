@@ -12,6 +12,10 @@ public class SensorDebug extends CommandBase {
   public SensorDebug() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.colorsrc);
+    addRequirements(RobotContainer.camarr);
+    addRequirements(RobotContainer.spi_imu);
+    addRequirements(RobotContainer.input);
+    addRequirements(RobotContainer.sonic);
   }
 
   // Called when the command is initially scheduled.
@@ -21,8 +25,7 @@ public class SensorDebug extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    String color = RobotContainer.colorsrc.colorCompare();
-    System.out.println(color);
+    colorvalues();
   }
 
   // Called once the command ends or is interrupted.
@@ -35,5 +38,13 @@ public class SensorDebug extends CommandBase {
   @Override
   public boolean isFinished() {
     return false;
+  }
+
+  //test colorsensor input
+  private void colorvalues(){
+    double[] rgb = RobotContainer.colorsrc.rawcolors(1);
+    System.out.println(String.valueOf(rgb[0]));
+    System.out.println(String.valueOf(rgb[1]));
+    System.out.println(String.valueOf(rgb[2]));
   }
 }

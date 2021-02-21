@@ -16,7 +16,7 @@ public class AutonomousRoutine extends CommandBase {
   private TimerTask stop = new task();
   private boolean cancel = false;
   private boolean timer = false;
-  private int fails = 0;
+  //private int fails = 0;
 
   private class task extends TimerTask{
       public void run(){

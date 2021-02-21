@@ -28,12 +28,27 @@ public final class Constants {
             //triggers
             public static final int x1_left_trig = 2;
             public static final int x1_right_trig = 3;
+
+        //Logitech controller - the triggers are seen as buttons unfortunately so anything using anolog input from the triggers will not work with this controller
+            public static final int log1_port = 0;
+            //buttons
+            public static final int log1_xbutton = 0;
+            public static final int log1_ybutton = 3;
+            public static final int log1_abutton = 1;
+            public static final int log1_bbutton = 2;
+            public static final int log1_menubutton = 9;
+            public static final int log1_homebutton = 10;
+            //sticks
+            public static final int log1_LY = 1;
+            public static final int log1_RY = 3;
+            public static final int log1_LX = 0;
+            public static final int log1_RX = 2;
         
         //drivebase motors (channels)
-        public static int front_left_chan = 0;
+        public static int front_left_chan = 3;
         public static int front_right_chan = 1;
         public static int back_left_chan = 2;
-        public static int back_right_chan = 3;
+        public static int back_right_chan = 0;
 
         //Talon SRX's (can id's)
         public static int falcon1_canid = 0;
@@ -66,10 +81,10 @@ public final class Constants {
             public static boolean db_left_invt = false;
             public static boolean db_right_invt = true;
             //multipliers for each stick axis
-            public static double c1_left_Y_mult = 1;
-            public static double c1_right_Y_mult = 1;
-            public static double c1_left_X_mult = 1;
-            public static double c1_right_X_mult = 1;
+            public static double c1_left_Y_mult = -0.5;
+            public static double c1_right_Y_mult = -0.5;
+            public static double c1_left_X_mult = -0.5;
+            public static double c1_right_X_mult = -0.5;
             //deadzone on controller sticks -> only set for drivebase control atm
             public static double deadzone = 0.4;
             //takes the controller stick output value to the power of this number (along with multiplying it by the above values)
@@ -84,7 +99,7 @@ public final class Constants {
         //autonomous line following
         public static double linecolor[] = {0.48, 0.18, 0.8, 0.67, 0.75, 0.4};
         public static double floorcolor[] = {0.0, 0.1, 0.0, 0.1, 0.0, 0.1};
-        public static double linespeed = 0.5;
+        public static double linespeed = 0.25;
 	
 }
 
