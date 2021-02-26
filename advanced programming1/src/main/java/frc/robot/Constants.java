@@ -8,41 +8,68 @@ import com.analog.adis16470.frc.ADIS16470_IMU.ADIS16470CalibrationTime;
 import com.analog.adis16470.frc.ADIS16470_IMU.IMUAxis;
 import edu.wpi.first.wpilibj.I2C;
 
-public final class Constants {
+public final class Constants{
     //Hardware config
-        //xbox controller
-            //port
-            public static final int xbox1_port = 0;
-            //buttons
-            public static final int xbox1_xbutton = 2;
-            public static final int xbox1_ybutton = 3;
-            public static final int xbox1_abutton = 0;
-            public static final int xbox1_bbutton = 1;
-            public static final int xbox1_menubutton = 4;
-            public static final int xbox1_homebutton = 5;
-            //stick axis(es?)
-            public static final int x1_left_Y = 1;
-            public static final int x1_right_Y = 5;
-            public static final int x1_left_X = 0;
-            public static final int x1_right_X = 4;
-            //triggers
-            public static final int x1_left_trig = 2;
-            public static final int x1_right_trig = 3;
+        //Controller layout - layouts are defined here -> can be used as-is, or, can access basic buttons through the input instance of UserInput, which will give the layout based on what controlmode is set
+        //In order for buttons, sticks, etc. to be set, the setcontrolmode method, which is under UserInput, must be run at startup, or could be run continuously to make it so keybinds could be changed dynamically
+        public static String controlmode = "xbox";
+        public static final int controller_port = 0;
+            //xbox controller keybinds
+            public static final int x_controllerButton_A = 0;
+            public static final int x_controllerButton_B = 1;
+            public static final int x_controllerButton_X = 2;
+            public static final int x_controllerButton_Y = 3;
+            public static final int x_controllerButton_menu = 4;
+            public static final int x_controllerButton_home = 5;
+            public static final int x_controllerStick_ly = 1;
+            public static final int x_controllerStick_lx = 0;
+            public static final int x_controllerStick_ry = 5;
+            public static final int x_controllerStick_rx = 4;
+            public static final int x_controllerTrigger_l = 2;
+            public static final int x_controllerTrigger_r = 3;
+            //logitech controller keybinds
+            public static final int l_controllerButton_A = 1;
+            public static final int l_controllerButton_B = 2;
+            public static final int l_controllerButton_X = 0;
+            public static final int l_controllerButton_Y = 3;
+            public static final int l_controllerButton_menu = 9;
+            public static final int l_controllerButton_home = 10;
+            public static final int l_controllerStick_ly = 1;
+            public static final int l_controllerStick_lx = 0;
+            public static final int l_controllerStick_ry = 3;
+            public static final int l_controllerStick_rx = 2;
+            public static final int l_controllerTrigger_l = 0;
+            public static final int l_controllerTrigger_r = 0;
+            //similar controller keybinds
 
-        //Logitech controller - the triggers are seen as buttons unfortunately so anything using anolog input from the triggers will not work with this controller
-            public static final int log1_port = 0;
-            //buttons
-            public static final int log1_xbutton = 0;
-            public static final int log1_ybutton = 3;
-            public static final int log1_abutton = 1;
-            public static final int log1_bbutton = 2;
-            public static final int log1_menubutton = 9;
-            public static final int log1_homebutton = 10;
-            //sticks
-            public static final int log1_LY = 1;
-            public static final int log1_RY = 3;
-            public static final int log1_LX = 0;
-            public static final int log1_RX = 2;
+        //keeping this in just in case :)
+        // //xbox controller
+        //     public static final int xbox1_port = 0;
+        //     public static final int xbox1_xbutton = 2;
+        //     public static final int xbox1_ybutton = 3;
+        //     public static final int xbox1_abutton = 0;
+        //     public static final int xbox1_bbutton = 1;
+        //     public static final int xbox1_menubutton = 4;
+        //     public static final int xbox1_homebutton = 5;
+        //     public static final int x1_left_Y = 1;
+        //     public static final int x1_right_Y = 5;
+        //     public static final int x1_left_X = 0;
+        //     public static final int x1_right_X = 4;
+        //     public static final int x1_left_trig = 2;
+        //     public static final int x1_right_trig = 3;
+
+        // //Logitech controller - the triggers are seen as buttons unfortunately so anything using anolog input from the triggers will not work with this controller
+        //     public static final int log1_port = 0;
+        //     public static final int log1_xbutton = 0;
+        //     public static final int log1_ybutton = 3;
+        //     public static final int log1_abutton = 1;
+        //     public static final int log1_bbutton = 2;
+        //     public static final int log1_menubutton = 9;
+        //     public static final int log1_homebutton = 10;
+        //     public static final int log1_LY = 1;
+        //     public static final int log1_RY = 3;
+        //     public static final int log1_LX = 0;
+        //     public static final int log1_RX = 2;
         
         //drivebase motors (channels)
         public static int front_left_chan = 3;
@@ -76,7 +103,7 @@ public final class Constants {
             //drivebase drivecontrol mode -> Options include the following: tank, race, trigger, arcade
             public static String db_drivemode = "race";
             //sets automatic squaring inside the tankdrive and arcadedrive functions (turned off if it is aready done in controller input function)
-            public static boolean general_squareinp = false;
+            public static boolean default_squareinp = false;
             //invert boolean for each side
             public static boolean db_left_invt = false;
             public static boolean db_right_invt = true;

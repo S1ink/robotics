@@ -21,12 +21,12 @@ public class TeleopDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double lstick_Y = RobotContainer.input.OPControllerFunc1(Constants.x1_left_Y, Constants.deadzone, Constants.c1_left_Y_mult, Constants.power);
-    double rstick_Y = RobotContainer.input.OPControllerFunc1(Constants.x1_right_Y, Constants.deadzone, Constants.c1_right_Y_mult, Constants.power);
-    double lstick_X = RobotContainer.input.OPControllerFunc1(Constants.x1_left_X, Constants.deadzone, Constants.c1_left_X_mult, Constants.power);
-    double rstick_X = RobotContainer.input.OPControllerFunc1(Constants.x1_right_X, Constants.deadzone, Constants.c1_right_X_mult, Constants.power);
-    double ltrigger = RobotContainer.input.OPControllerFunc1(Constants.x1_left_trig, 0, 1, 2);
-    double rtrigger = RobotContainer.input.OPControllerFunc1(Constants.x1_right_trig, 0, 1, 2);
+    double lstick_Y = RobotContainer.input.OPControllerFunc1(Constants.x_controllerStick_ly, Constants.deadzone, Constants.c1_left_Y_mult, Constants.power);
+    double rstick_Y = RobotContainer.input.OPControllerFunc1(Constants.x_controllerStick_ry, Constants.deadzone, Constants.c1_right_Y_mult, Constants.power);
+    double lstick_X = RobotContainer.input.OPControllerFunc1(Constants.x_controllerStick_lx, Constants.deadzone, Constants.c1_left_X_mult, Constants.power);
+    double rstick_X = RobotContainer.input.OPControllerFunc1(Constants.x_controllerStick_rx, Constants.deadzone, Constants.c1_right_X_mult, Constants.power);
+    double ltrigger = RobotContainer.input.OPControllerFunc1(Constants.x_controllerTrigger_l, 0, 1, 2);
+    double rtrigger = RobotContainer.input.OPControllerFunc1(Constants.x_controllerTrigger_r, 0, 1, 2);
     if(Constants.db_drivemode == "tank"){
       RobotContainer.db_main.tank_drive(lstick_Y, rstick_Y);
     }else if(Constants.db_drivemode == "arcade"){

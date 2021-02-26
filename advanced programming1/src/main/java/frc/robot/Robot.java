@@ -20,6 +20,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotPeriodic() {
       CommandScheduler.getInstance().run();
+      RobotContainer.camarr.start_streams(true, false, false);
     }
 
     

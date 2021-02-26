@@ -5,25 +5,72 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants;
 
 public class UserInput extends SubsystemBase {
+  //declare button assignments
+  private static int controllerButton_A;
+  private static int controllerButton_B;
+  private static int controllerButton_X;
+  private static int controllerButton_Y;
+  private static int controllerButton_menu;
+  private static int controllerButton_home;
+  //can maybe change sticks back to being in Constants, as they might be the same -> test
+  public static int controllerStick_ly;
+  public static int controllerStick_lx;
+  public static int controllerStick_ry;
+  public static int controllerStick_rx;
+  public static int controllerTrigger_l;
+  public static int controllerTrigger_r;
+  
   //setup controllers and buttons
-  public XboxController xbox1 = new XboxController(Constants.xbox1_port);
-  public JoystickButton xbutton = new JoystickButton(xbox1, Constants.xbox1_xbutton);
-  public JoystickButton ybutton = new JoystickButton(xbox1, Constants.xbox1_ybutton);
-  public JoystickButton abutton = new JoystickButton(xbox1, Constants.xbox1_abutton);
-  public JoystickButton bbutton = new JoystickButton(xbox1, Constants.xbox1_bbutton);
-  public JoystickButton menubutton = new JoystickButton(xbox1, Constants.xbox1_menubutton);
-  public JoystickButton homebutton = new JoystickButton(xbox1, Constants.xbox1_homebutton);
+  public XboxController Controller = new XboxController(Constants.controller_port);
+  public JoystickButton Xbutton = new JoystickButton(Controller, controllerButton_X);
+  public JoystickButton Ybutton = new JoystickButton(Controller, controllerButton_Y);
+  public JoystickButton Abutton = new JoystickButton(Controller, controllerButton_A);
+  public JoystickButton Bbutton = new JoystickButton(Controller, controllerButton_B);
+  public JoystickButton menubutton = new JoystickButton(Controller, controllerButton_menu);
+  public JoystickButton homebutton = new JoystickButton(Controller, controllerButton_home);
 
+  /**
+   * THIS FUNCTION MUST BE RUN EITHER IN THE CONSTRUCTOR OF THIS CLASS OR AT ROBOTINIT, otherwise controllerbuttons will not do anything
+   */
+  public void setcontrolmode(){
+    if(Constants.controlmode.equals("xbox")){
+      controllerButton_A = Constants.x_controllerButton_A;
+      controllerButton_B = Constants.x_controllerButton_B;
+      controllerButton_X = Constants.x_controllerButton_X;
+      controllerButton_Y = Constants.x_controllerButton_Y;
+      controllerButton_menu = Constants.x_controllerButton_menu;
+      controllerButton_home = Constants.x_controllerButton_home;
+      controllerStick_ly = Constants.x_controllerStick_ly;
+      controllerStick_lx = Constants.x_controllerStick_lx;
+      controllerStick_ry = Constants.x_controllerStick_ry;
+      controllerStick_rx = Constants.x_controllerStick_rx;
+      controllerTrigger_l = Constants.x_controllerTrigger_l;
+      controllerTrigger_r = Constants.x_controllerTrigger_r;
+    }else if(Constants.controlmode.equals("logitech")){
+      controllerButton_A = Constants.l_controllerButton_A;
+      controllerButton_B = Constants.l_controllerButton_B;
+      controllerButton_X = Constants.l_controllerButton_X;
+      controllerButton_Y = Constants.l_controllerButton_Y;
+      controllerButton_menu = Constants.l_controllerButton_menu;
+      controllerButton_home = Constants.l_controllerButton_home;
+      controllerStick_ly = Constants.l_controllerStick_ly;
+      controllerStick_lx = Constants.l_controllerStick_lx;
+      controllerStick_ry = Constants.l_controllerStick_ry;
+      controllerStick_rx = Constants.l_controllerStick_rx;
+      controllerTrigger_l = Constants.l_controllerTrigger_l;
+      controllerTrigger_r = Constants.l_controllerTrigger_r;
+    }
+  }
 
   /** Creates a new UserInput. */
-  public UserInput() {}
+  public UserInput() {
+    setcontrolmode();
+  }
 
   @Override
   public void periodic() {
@@ -31,19 +78,19 @@ public class UserInput extends SubsystemBase {
   }
 
   public double ControllerAxis_raw(int axis){
-    return (xbox1.getRawAxis(axis));
+    return (Controller.getRawAxis(axis));
   }
 
   public double ControllerAxis_offset(int axis, double offset){
-    return (xbox1.getRawAxis(axis))+(offset);
+    return (Controller.getRawAxis(axis))+(offset);
   }
 
   public double ControllerAxis_multiplier(int axis, double mult){
-    return (xbox1.getRawAxis(axis))*(mult);
+    return (Controller.getRawAxis(axis))*(mult);
   }
   
   public double ControllerAxis_exponential(int axis, int ex){
-    double raw = xbox1.getRawAxis(axis);
+    double raw = Controller.getRawAxis(axis);
     double ret = 1;
     for (int i=0; i<ex; i++){
       ret *= raw;
@@ -59,7 +106,7 @@ public class UserInput extends SubsystemBase {
    * range will be very close to zero (simulating the "graph" of the function of the IO in this case being raised above the horizontal 
    * line that is the deadzone). Use this Desmos graph as a reference as a general representation of the behavior: https://www.desmos.com/calculator/hp7hs46fhj */
    public double OPControllerFunc1(int axis, double deadzone, double multiplier, int ex_power){
-    double raw = xbox1.getRawAxis(axis);
+    double raw = Controller.getRawAxis(axis);
     double threshold = Math.abs(deadzone - (int)deadzone);
     double ex = 1;
     double exa = 1;
@@ -81,7 +128,7 @@ public class UserInput extends SubsystemBase {
    * Use this Desmos graph as a reference as a general representation of the behavior: https://www.desmos.com/calculator/hp7hs46fhj 
    * (to visualize, only move the "y=" slider, but not the slider for addition in the main funciton)*/
   public double OPControllerFunc2(int axis, double deadzone, double multiplier, int ex_power){
-    double raw = xbox1.getRawAxis(axis);
+    double raw = Controller.getRawAxis(axis);
     double threshold = Math.abs(deadzone - (int)deadzone);
     double ex = 1;
     for (int i=0; i<ex_power; i++){

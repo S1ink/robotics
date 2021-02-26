@@ -19,10 +19,10 @@ public class SensorDebug extends CommandBase {
   public SensorDebug() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.colorsrc);
-    addRequirements(RobotContainer.camarr);
-    addRequirements(RobotContainer.spi_imu);
-    addRequirements(RobotContainer.input);
-    addRequirements(RobotContainer.sonic);
+    //addRequirements(RobotContainer.camarr);
+    //addRequirements(RobotContainer.spi_imu);
+    //addRequirements(RobotContainer.input);
+    //addRequirements(RobotContainer.sonic);
   }
 
   // Called when the command is initially scheduled.

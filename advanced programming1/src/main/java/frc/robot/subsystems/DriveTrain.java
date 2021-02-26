@@ -32,11 +32,11 @@ public class DriveTrain extends SubsystemBase {
 
 //start of custom methods
   public void tank_drive(double left_speed, double right_speed){
-    drive_main.tankDrive(left_speed, right_speed, Constants.general_squareinp);
+    drive_main.tankDrive(left_speed, right_speed, Constants.default_squareinp);
   }
 
   public void arcade_drive(double x_axis, double y_axis){
-    drive_main.arcadeDrive(x_axis, y_axis, Constants.general_squareinp);
+    drive_main.arcadeDrive(x_axis, y_axis, Constants.default_squareinp);
   }
 
   /**The point of this method is for the controller triggers to be the forward and backwards parameters, and the rotation to be the x-axis of one of the sticks (left and right) */
