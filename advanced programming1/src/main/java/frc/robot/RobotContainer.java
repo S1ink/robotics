@@ -20,8 +20,8 @@ public class RobotContainer {
   public static DriveTrain db_main = new DriveTrain();
   public static ColorSense colorsrc = new ColorSense();
   public static IMU_Gyro spi_imu = new IMU_Gyro();
-  public static CameraArray camarr = new CameraArray();
-  public static UltrasonicArray sonic = new UltrasonicArray();
+  //public static CameraArray camarr = new CameraArray();
+  //public static UltrasonicArray sonic = new UltrasonicArray();
   public static UserInput input = new UserInput();
 
   //commmand declaration
@@ -32,6 +32,7 @@ public class RobotContainer {
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
+      System.out.println("RobotContainer Constructor");
       teleop_drive = new TeleopDrive();
       sense_periodic = new SensorDebug();
       auto_routine = new AutonomousRoutine();
@@ -47,7 +48,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    System.out.println("buttons not configured yet");
     RobotContainer.input.menubutton.whenHeld(stop);
+    System.out.println("buttons configured");
   }
 
   /**

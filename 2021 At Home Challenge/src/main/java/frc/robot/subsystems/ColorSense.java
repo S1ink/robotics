@@ -12,11 +12,6 @@ public class ColorSense extends SubsystemBase {
   //colorsensors
   private ColorSensorV3 colorsrc = new ColorSensorV3(Constants.colorsensor_port);
   //private ColorSensorV3 colorsrc2 = new ColorSensorV3(Constants.colorsensor2_port);     //WILL NEED FIXING IF THERE ARE ACTUALLY TWO COLORSENSORS
-  
-  private double[] ycal = Constants.yellow;
-  private double[] gcal = Constants.green;
-  private double[] ccal = Constants.cyan;
-  private double[] rcal = Constants.red;
 
   /** Creates a new ColorSense. */
   public ColorSense() {}
@@ -94,24 +89,5 @@ public class ColorSense extends SubsystemBase {
   //   ret[2] = colorsrc2.getBlue();
   //   return ret;
   // }
-
-  //needs some work, and thought on what should be returned, where, and how this will integrate elsewhere
-  //Unsure about if using the "double arrays" for the color calibration will work at this point, further testing needed
-  public String colorCompare(){
-    double red1 = red(1);
-    double green1 = green(1);
-    double blue1 = blue(1);
-    if (red1<ycal[0] & red1>ycal[1] & green1<ycal[2] & green1>ycal[3] & blue1>ycal[4] & blue1<ycal[5]){
-    return "Yellow";
-    }else if (red1<gcal[0] & red1>gcal[1] & green1<gcal[2] & green1>gcal[3] & blue1<gcal[4] & blue1>gcal[5]){
-    return "Green";
-    }else if (red1<ccal[0] & red1>ccal[1] & green1<ccal[2] & green1>ccal[3] & blue1<ccal[4] & blue1>ccal[5]){
-    return "Cyan";
-    }else if (red1<rcal[0] & red1>rcal[1] & green1<rcal[2] & green1>rcal[3] & blue1<rcal[4] & blue1>rcal[5]){
-    return "Red";
-    }else{
-    return "None";
-    }
-  }
 }
 

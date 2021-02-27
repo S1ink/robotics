@@ -13,7 +13,7 @@ public class SensorDebug extends CommandBase {
   private double greenarr[] = {0.0, 0.0, 0.0};
   private double bluearr[] = {0.0, 0.0, 0.0};
   private double rgb[] = RobotContainer.colorsrc.rawcolors(1);
-  private int count = 0;
+  // private int count = 0;
 
 
   /** Creates a new PeriodiColor. */
@@ -55,17 +55,17 @@ public class SensorDebug extends CommandBase {
   /**
    * @param output - the place where coutputs will show - 0 is the terminal, 1 is smartdashboard/shuffleboard
    */
-  private void colorvalues(int output){
-    if(output == 0){
-      System.out.println(String.valueOf(RobotContainer.colorsrc.red(0)));
-      System.out.println(String.valueOf(RobotContainer.colorsrc.green(0)));
-      System.out.println(String.valueOf(RobotContainer.colorsrc.blue(0)));
-    }else if(output == 1){
-      SmartDashboard.putNumber("Raw Red:", RobotContainer.colorsrc.red(0));
-      SmartDashboard.putNumber("Raw Green:", RobotContainer.colorsrc.green(0));
-      SmartDashboard.putNumber("Raw Blue:", RobotContainer.colorsrc.blue(0));
-    }
-  }
+  // private void colorvalues(int output){
+  //   if(output == 0){
+  //     System.out.println(String.valueOf(RobotContainer.colorsrc.red(0)));
+  //     System.out.println(String.valueOf(RobotContainer.colorsrc.green(0)));
+  //     System.out.println(String.valueOf(RobotContainer.colorsrc.blue(0)));
+  //   }else if(output == 1){
+  //     SmartDashboard.putNumber("Raw Red:", RobotContainer.colorsrc.red(0));
+  //     SmartDashboard.putNumber("Raw Green:", RobotContainer.colorsrc.green(0));
+  //     SmartDashboard.putNumber("Raw Blue:", RobotContainer.colorsrc.blue(0));
+  //   }
+  // }
 
   private void coloravg_setup(){
     redarr[0] = redarr[1] = redarr[2] = rgb[0];
@@ -109,15 +109,15 @@ public class SensorDebug extends CommandBase {
     SmartDashboard.putNumber("Lowest Blue: ", blue[2]);
   }
 
-  /**
-   * @param counts - the number of periodic runs that it will take to update colorsensor values - ex. if counts = 25, then the colorsenosr will update 2 times per second
-   */
-  private void coloravg_lowfreq(int counts){
-    if(count == counts){
-      coloravg_periodic();
-      count = 0;
-    }else{
-      count += 1;
-    }
-  }
+  // /**
+  //  * @param counts - the number of periodic runs that it will take to update colorsensor values - ex. if counts = 25, then the colorsenosr will update 2 times per second
+  //  */
+  // private void coloravg_lowfreq(int counts){
+  //   if(count == counts){
+  //     coloravg_periodic();
+  //     count = 0;
+  //   }else{
+  //     count += 1;
+  //   }
+  // }
 }

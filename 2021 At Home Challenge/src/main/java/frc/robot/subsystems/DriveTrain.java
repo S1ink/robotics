@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
+//import frc.robot.RobotContainer;
 
 public class DriveTrain extends SubsystemBase {
   //DriveBase motors and groups setup
@@ -59,27 +59,27 @@ public class DriveTrain extends SubsystemBase {
     db_right.set(speed);
   }
 
-  /**HAS NOT BEEN TESTED.
-   * This function WILL have bugs, and it is probably not written the correct way, so be warned. 
-   * 
-   * @param degrees - the degrees to turn -> positive is a right turn, negative is a left turn
-   * @param speed - the speed in which the motors will go throughout the turn
-   */
-  public void correcturn(double degrees, double speed){
-    double correct = RobotContainer.spi_imu.currentAngle();
-    double comparr[] = {correct};
-    double diff = Math.abs(Math.abs(comparr[0]) - Math.abs(correct));
-    double vectortarget = Math.copySign(diff, degrees);
-    if(degrees > 0){
-      while(degrees <= vectortarget){
-        drive_main.tankDrive(speed, -speed);
-      }
-    }else if(degrees < 0){
-      while(degrees >= vectortarget){
-        drive_main.tankDrive(-speed, speed);
-      }
-    }
-  }
+  // /**HAS NOT BEEN TESTED.
+  //  * This function WILL have bugs, and it is probably not written the correct way, so be warned. 
+  //  * 
+  //  * @param degrees - the degrees to turn -> positive is a right turn, negative is a left turn
+  //  * @param speed - the speed in which the motors will go throughout the turn
+  //  */
+  // public void correcturn(double degrees, double speed){
+  //   double correct = RobotContainer.spi_imu.currentAngle();
+  //   double comparr[] = {correct};
+  //   double diff = Math.abs(Math.abs(comparr[0]) - Math.abs(correct));
+  //   double vectortarget = Math.copySign(diff, degrees);
+  //   if(degrees > 0){
+  //     while(degrees <= vectortarget){
+  //       drive_main.tankDrive(speed, -speed);
+  //     }
+  //   }else if(degrees < 0){
+  //     while(degrees >= vectortarget){
+  //       drive_main.tankDrive(-speed, speed);
+  //     }
+  //   }
+  // }
   
 
 

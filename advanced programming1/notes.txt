@@ -1,5 +1,5 @@
 - add button command to switch between driving modes
 - add another controller to UserInput to be for the logitech controller, make switching streamlined too?
-- MAKE SURE WORKS -> dd a method to the SensorDebug command that will ouput an updating average value of all colorsensor inputs for each color of RGB (to get calibration values)
 - add more outputs to shuffleboard to make debugging easier
 - make having multiple controller layouts more streamlined -> make sure everything works
+- add more button commands -> multiple buttons pressed to activate?
