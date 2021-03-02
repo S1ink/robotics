@@ -4,9 +4,10 @@
 
 package frc.robot;
 
-import frc.robot.commands.AutonomousRoutine;
+import frc.robot.commands.AutoLine;
 import frc.robot.commands.TeleopDrive;
 import frc.robot.commands.SensorDebug;
+import frc.robot.commands.groups.Slolom;
 import frc.robot.commands.CancelAll;
 import frc.robot.subsystems.ColorSense;
 import frc.robot.subsystems.DriveTrain;
@@ -19,15 +20,17 @@ public class RobotContainer {
   public static UserInput input = new UserInput();
 
   //commmand declaration
-  public static AutonomousRoutine auto_routine;
+  public static Slolom slolom;
+  public static AutoLine auto_routine;
   public static TeleopDrive teleop_drive;
   public static SensorDebug sense_periodic;
   public static CancelAll stop;
 
   public RobotContainer() {
+    slolom = new Slolom(null);
     teleop_drive = new TeleopDrive();
     sense_periodic = new SensorDebug();
-    auto_routine = new AutonomousRoutine();
+    auto_routine = new AutoLine();
     stop = new CancelAll();
     // Configure the button bindings
     configureButtonBindings();

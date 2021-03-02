@@ -40,7 +40,7 @@ public final class Constants{
             public static boolean default_squareinp = false;
             //invert boolean for each side
             public static boolean db_left_invt = false;
-            public static boolean db_right_invt = true;
+            public static boolean db_right_invt = false;
             //multipliers for each stick axis
             public static double c1_left_Y_mult = -0.5;
             public static double c1_right_Y_mult = -0.5;
@@ -53,7 +53,7 @@ public final class Constants{
 
         //autonomous line following
         public static double linecolor[] = {0.48, 0.18, 0.8, 0.67, 0.75, 0.4};
-        public static double floorcolor[] = {0.0, 0.1, 0.0, 0.1, 0.0, 0.1};
-        public static double linespeed = 0.25;
+        public static double floorcolor[] = {0.54, 0.42, 0.81, 0.69, 0.40, 0.31};
+        public static double linespeed = 0.2;
 	
 }
