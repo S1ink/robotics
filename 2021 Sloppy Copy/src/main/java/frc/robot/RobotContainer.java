@@ -17,6 +17,7 @@ import frc.robot.subsystems.IMU_Gyro;
 import frc.robot.subsystems.UltrasonicArray;
 import frc.robot.subsystems.UserInput;
 import frc.robot.commands.DriveMode;
+import frc.robot.commands.Decelerate;
 
 public class RobotContainer {
   //automated update functions

@@ -5,7 +5,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.Dynamics;
 import frc.robot.RobotContainer;
 /**
@@ -21,9 +20,9 @@ public class SwapController extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if(Constants.controlmode.equals("xbox") | Dynamics.controllerlayout.equals("xbox")){
+    if(Dynamics.controllerlayout.equals("xbox")){
       Dynamics.controllerlayout = "logitech";
-    }else if(Constants.controlmode.equals("logitech") | Dynamics.controllerlayout.equals("logitech")){
+    }else if(Dynamics.controllerlayout.equals("logitech")){
       Dynamics.controllerlayout = "xbox";
     }
     RobotContainer.dynamics.setmode(Dynamics.controllerlayout);

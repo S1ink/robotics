@@ -19,7 +19,7 @@ public final class Dynamics{
     public static int controllerTrigger_l;
     public static int controllerTrigger_r;
 
-    public static String controllerlayout = "none";
+    public static String controllerlayout = Constants.controlmode;
 
     //Software config/calibration -> dynamic in the future?
         //drivebase motor/controlling options

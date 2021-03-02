@@ -42,11 +42,11 @@ public class DriveTrain extends SubsystemBase {
   /**The point of this method is for the controller triggers to be the forward and backwards parameters, and the rotation to be the x-axis of one of the sticks (left and right) */
   public void race_drive(double forward, double backward, double rotation){
     double cumulative = forward - backward;
-    drive_main.arcadeDrive(cumulative, rotation);
+    drive_main.arcadeDrive(cumulative, rotation, Constants.default_squareinp);
   }
 
   public void trigger_drive(double ltrig, double rtrig){
-    drive_main.tankDrive(ltrig, rtrig);
+    drive_main.tankDrive(ltrig, rtrig, Constants.default_squareinp);
   }
 
   //basic side control

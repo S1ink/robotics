@@ -24,7 +24,7 @@ public class UserInput extends SubsystemBase {
   public JoystickButton rightbutton = new JoystickButton(Controller, Dynamics.controllerButton_rb);
   public JoystickButton lstickbutton = new JoystickButton(Controller, Dynamics.controllerButton_ls);
   public JoystickButton rstickbutton = new JoystickButton(Controller, Dynamics.controllerButton_rs);
-
+  
   /** Creates a new UserInput. */
   public UserInput(){}
 
