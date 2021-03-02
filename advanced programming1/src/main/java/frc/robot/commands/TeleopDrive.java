@@ -6,12 +6,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.Dynamics;
 import frc.robot.RobotContainer;
 
 public class TeleopDrive extends CommandBase {
   public TeleopDrive() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.db_main);
+    addRequirements(RobotContainer.input);
   }
 
   // Called when the command is initially scheduled.
@@ -27,14 +29,16 @@ public class TeleopDrive extends CommandBase {
     double rstick_X = RobotContainer.input.OPControllerFunc1(Constants.x_controllerStick_rx, Constants.deadzone, Constants.c1_right_X_mult, Constants.power);
     double ltrigger = RobotContainer.input.OPControllerFunc1(Constants.x_controllerTrigger_l, 0, 1, 2);
     double rtrigger = RobotContainer.input.OPControllerFunc1(Constants.x_controllerTrigger_r, 0, 1, 2);
-    if(Constants.db_drivemode == "tank"){
+    if(Dynamics.drivemode == "tank"){
       RobotContainer.db_main.tank_drive(lstick_Y, rstick_Y);
-    }else if(Constants.db_drivemode == "arcade"){
+    }else if(Dynamics.drivemode == "arcade"){
       RobotContainer.db_main.arcade_drive(lstick_X, lstick_Y);
-    }else if(Constants.db_drivemode == "race"){
+    }else if(Dynamics.drivemode == "race"){
       RobotContainer.db_main.race_drive(ltrigger, rtrigger, rstick_X);
-    }else if(Constants.db_drivemode == "trigger"){
+    }else if(Dynamics.drivemode == "trigger"){
       RobotContainer.db_main.trigger_drive(ltrigger, rtrigger);
+    }else{
+      System.out.println("drivemode error");
     }
    }
 

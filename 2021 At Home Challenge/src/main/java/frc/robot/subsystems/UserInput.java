@@ -8,19 +8,25 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants;
+import frc.robot.Dynamics;
 
-public class UserInput extends SubsystemBase {  
+public class UserInput extends SubsystemBase {
+  
   //setup controllers and buttons
   public XboxController Controller = new XboxController(Constants.controller_port);
-  public JoystickButton Xbutton = new JoystickButton(Controller, Constants.l_controllerButton_X);
-  public JoystickButton Ybutton = new JoystickButton(Controller, Constants.l_controllerButton_Y);
-  public JoystickButton Abutton = new JoystickButton(Controller, Constants.l_controllerButton_A);
-  public JoystickButton Bbutton = new JoystickButton(Controller, Constants.l_controllerButton_B);
-  public JoystickButton menubutton = new JoystickButton(Controller, Constants.l_controllerButton_menu);
-  public JoystickButton homebutton = new JoystickButton(Controller, Constants.l_controllerButton_home);
+  public JoystickButton Xbutton = new JoystickButton(Controller, Dynamics.controllerButton_X);
+  public JoystickButton Ybutton = new JoystickButton(Controller, Dynamics.controllerButton_Y);
+  public JoystickButton Abutton = new JoystickButton(Controller, Dynamics.controllerButton_A);
+  public JoystickButton Bbutton = new JoystickButton(Controller, Dynamics.controllerButton_B);
+  public JoystickButton menubutton = new JoystickButton(Controller, Dynamics.controllerButton_menu);
+  public JoystickButton homebutton = new JoystickButton(Controller, Dynamics.controllerButton_home);
+  public JoystickButton leftbutton = new JoystickButton(Controller, Dynamics.controllerButton_lb);
+  public JoystickButton rightbutton = new JoystickButton(Controller, Dynamics.controllerButton_rb);
+  public JoystickButton lstickbutton = new JoystickButton(Controller, Dynamics.controllerButton_ls);
+  public JoystickButton rstickbutton = new JoystickButton(Controller, Dynamics.controllerButton_rs);
 
   /** Creates a new UserInput. */
-  public UserInput() {}
+  public UserInput(){}
 
   @Override
   public void periodic() {

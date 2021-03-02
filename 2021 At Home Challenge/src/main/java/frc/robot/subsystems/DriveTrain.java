@@ -46,8 +46,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void trigger_drive(double ltrig, double rtrig){
-    db_left.set(ltrig);
-    db_right.set(rtrig);
+    drive_main.tankDrive(ltrig, rtrig);
   }
 
   //basic side control

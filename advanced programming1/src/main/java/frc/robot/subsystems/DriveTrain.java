@@ -46,8 +46,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void trigger_drive(double ltrig, double rtrig){
-    db_left.set(ltrig);
-    db_right.set(rtrig);
+    drive_main.tankDrive(ltrig, rtrig);
   }
 
   //basic side control
@@ -57,6 +56,17 @@ public class DriveTrain extends SubsystemBase {
 
   public void rightmotors(double speed){
     db_right.set(speed);
+  }
+
+  //timing? - yep, under construction due to scheduler timing integration needs
+  public void decelerate(double init_speed){
+    double speed = init_speed;
+    while(speed>0.1){
+      speed *= 0.9;
+      drive_main.tankDrive(speed, speed);
+      System.out.println("happened");
+    }
+    drive_main.tankDrive(0, 0);
   }
 
   /**HAS NOT BEEN TESTED.

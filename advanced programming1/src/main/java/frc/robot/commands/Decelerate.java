@@ -5,11 +5,10 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
 
-public class CancelAll extends CommandBase {
-  /** Creates a new CancelAll. */
-  public CancelAll() {
+public class Decelerate extends CommandBase {
+  /** Creates a new Decelerate. */
+  public Decelerate() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -19,12 +18,7 @@ public class CancelAll extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    RobotContainer.linefollow.cancel();
-    RobotContainer.sense_periodic.cancel();
-    RobotContainer.teleop_drive.cancel();
-    RobotContainer.slolom.cancel();
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override

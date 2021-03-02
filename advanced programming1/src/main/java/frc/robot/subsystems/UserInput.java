@@ -8,71 +8,25 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants;
+import frc.robot.Dynamics;
 
 public class UserInput extends SubsystemBase {
-  //declare button assignments
-  private int controllerButton_A;
-  private int controllerButton_B;
-  private int controllerButton_X;
-  private int controllerButton_Y;
-  private int controllerButton_menu;
-  private int controllerButton_home;
-  //can maybe change sticks back to being in Constants, as they might be the same -> test
-  public int controllerStick_ly;
-  public int controllerStick_lx;
-  public int controllerStick_ry;
-  public int controllerStick_rx;
-  public int controllerTrigger_l;
-  public int controllerTrigger_r;
   
   //setup controllers and buttons
   public XboxController Controller = new XboxController(Constants.controller_port);
-  public JoystickButton Xbutton = new JoystickButton(Controller, controllerButton_X);
-  public JoystickButton Ybutton = new JoystickButton(Controller, controllerButton_Y);
-  public JoystickButton Abutton = new JoystickButton(Controller, controllerButton_A);
-  public JoystickButton Bbutton = new JoystickButton(Controller, controllerButton_B);
-  public JoystickButton menubutton = new JoystickButton(Controller, controllerButton_menu);
-  public JoystickButton homebutton = new JoystickButton(Controller, controllerButton_home);
-
-  /**
-   * THIS FUNCTION MUST BE RUN EITHER IN THE CONSTRUCTOR OF THIS CLASS OR AT ROBOTINIT, otherwise controllerbuttons will not do anything
-   */
-  public void setcontrolmode(){
-    if(Constants.controlmode.equals("xbox")){
-      controllerButton_A = Constants.x_controllerButton_A;
-      controllerButton_B = Constants.x_controllerButton_B;
-      controllerButton_X = Constants.x_controllerButton_X;
-      controllerButton_Y = Constants.x_controllerButton_Y;
-      controllerButton_menu = Constants.x_controllerButton_menu;
-      controllerButton_home = Constants.x_controllerButton_home;
-      controllerStick_ly = Constants.x_controllerStick_ly;
-      controllerStick_lx = Constants.x_controllerStick_lx;
-      controllerStick_ry = Constants.x_controllerStick_ry;
-      controllerStick_rx = Constants.x_controllerStick_rx;
-      controllerTrigger_l = Constants.x_controllerTrigger_l;
-      controllerTrigger_r = Constants.x_controllerTrigger_r;
-    }else if(Constants.controlmode.equals("logitech")){
-      controllerButton_A = Constants.l_controllerButton_A;
-      controllerButton_B = Constants.l_controllerButton_B;
-      controllerButton_X = Constants.l_controllerButton_X;
-      controllerButton_Y = Constants.l_controllerButton_Y;
-      controllerButton_menu = Constants.l_controllerButton_menu;
-      controllerButton_home = Constants.l_controllerButton_home;
-      controllerStick_ly = Constants.l_controllerStick_ly;
-      controllerStick_lx = Constants.l_controllerStick_lx;
-      controllerStick_ry = Constants.l_controllerStick_ry;
-      controllerStick_rx = Constants.l_controllerStick_rx;
-      controllerTrigger_l = Constants.l_controllerTrigger_l;
-      controllerTrigger_r = Constants.l_controllerTrigger_r;
-    }
-    System.out.println("control mode set");
-  }
+  public JoystickButton Xbutton = new JoystickButton(Controller, Dynamics.controllerButton_X);
+  public JoystickButton Ybutton = new JoystickButton(Controller, Dynamics.controllerButton_Y);
+  public JoystickButton Abutton = new JoystickButton(Controller, Dynamics.controllerButton_A);
+  public JoystickButton Bbutton = new JoystickButton(Controller, Dynamics.controllerButton_B);
+  public JoystickButton menubutton = new JoystickButton(Controller, Dynamics.controllerButton_menu);
+  public JoystickButton homebutton = new JoystickButton(Controller, Dynamics.controllerButton_home);
+  public JoystickButton leftbutton = new JoystickButton(Controller, Dynamics.controllerButton_lb);
+  public JoystickButton rightbutton = new JoystickButton(Controller, Dynamics.controllerButton_rb);
+  public JoystickButton lstickbutton = new JoystickButton(Controller, Dynamics.controllerButton_ls);
+  public JoystickButton rstickbutton = new JoystickButton(Controller, Dynamics.controllerButton_rs);
 
   /** Creates a new UserInput. */
-  public UserInput() {
-    setcontrolmode();
-    System.out.println("Userinput constructor");
-  }
+  public UserInput(){}
 
   @Override
   public void periodic() {

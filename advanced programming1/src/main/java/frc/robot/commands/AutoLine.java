@@ -11,7 +11,7 @@ import frc.robot.Constants;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AutonomousRoutine extends CommandBase {
+public class AutoLine extends CommandBase {
   private Timer timeout = new Timer();
   private TimerTask stop = new task();
   private boolean cancel = false;
@@ -26,7 +26,7 @@ public class AutonomousRoutine extends CommandBase {
   }
 
   /** Creates a new AutonomousRoutine. */
-  public AutonomousRoutine() {
+  public AutoLine() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.db_main);
     addRequirements(RobotContainer.colorsrc);

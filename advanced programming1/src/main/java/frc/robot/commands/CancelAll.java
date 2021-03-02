@@ -20,9 +20,10 @@ public class CancelAll extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.auto_routine.cancel();
+    RobotContainer.linefollow.cancel();
     RobotContainer.sense_periodic.cancel();
     RobotContainer.teleop_drive.cancel();
+    RobotContainer.slolom.cancel();
   }
 
   // Called once the command ends or is interrupted.

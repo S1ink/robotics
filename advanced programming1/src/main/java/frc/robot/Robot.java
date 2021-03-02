@@ -15,6 +15,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
       robotContainer = new RobotContainer(); 
+      //RobotContainer.dynamics.setmode(Constants.controlmode);
     }
     //remember to add "CommandScheduler.getInstance().run();" inside as this is necessary for anything depending on the scheduler to run
     @Override
@@ -36,7 +37,8 @@ public class Robot extends TimedRobot {
     //autonomous mode
     @Override
     public void autonomousInit() {
-      RobotContainer.sense_periodic.schedule();     //debug
+      RobotContainer.slolom.schedule();
+      //RobotContainer.sense_periodic.schedule();     //debug
       //RobotContainer.auto_routine.schedule();
     }
     @Override
