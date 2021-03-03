@@ -19,24 +19,51 @@ public class Slolom extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // TO MAKE THE ROBOT MOVE, SIMPLY ADD A NEW "AutoMove(left speed, right speed)" AND SPECIFY THE WHEEL SPEEDS. THEN ADD ".withTimeout(seconds)" TO MAKE IT LAST FOR HOWEVER LONG
     addCommands(
-      //move forward (start line)
-      new AutoMove(0.5, 0.5).withTimeout(2.5), 
-      //turn left (arc not pivot)
-      new AutoMove(0.25, 0.75).withTimeout(2),
-      //turn right (arc not pivot)
-      new AutoMove(0.75, 0.25).withTimeout(2),
-      //move forward
-      new AutoMove(0.75, 0.75).withTimeout(4),
-      //turn right (arc not pivot)
-      new AutoMove(0.75, 0.25).withTimeout(5),
-      //move forward 
-      new AutoMove(0.75, 0.75).withTimeout(4),
-      //turn righ (arc not pivot)
-      new AutoMove(0.75, 0.25).withTimeout(2),
-      //turn left (arc not pivot)
-      new AutoMove(0.25, 0.75).withTimeout(2),
-      //move forward (finish line)
-      new AutoMove(0.5, 0.5).withTimeout(2.5)
+      //move forward from start line
+      new AutoMove(0.2, 0.2).withTimeout(1.5),
+
+      //turn left, move through cones, turn right (two stages)
+      new AutoMove(-0.2, 0.3).withTimeout(1),
+      new AutoMove(0.3, 0.3).withTimeout(1.4),
+      new AutoMove(0.3, -0.2).withTimeout(0.95),
+      new AutoMove(0.2, 0.1).withTimeout(0.2),
+      
+      //move forward down the feild
+      new AutoMove(0.4, 0.4).withTimeout(2.5),
+
+      //turn right, then move forward through cones
+      new AutoMove(0.3, -0.2).withTimeout(1.1),
+      new AutoMove(0.2, 0.2).withTimeout(1.1),
+
+      //do a 360 around the last cone, 
+      new AutoMove(-0.1, 0.3).withTimeout(1.7),
+      new AutoMove(0, 0.2).withTimeout(1.5),
+      new AutoMove(-0.1, 0.3).withTimeout(1.7),
+      new AutoMove(0, 0.2).withTimeout(1.5),
+      new AutoMove(-0.1, 0.3).withTimeout(1.7),
+      new AutoMove(0, 0.2).withTimeout(1.5),
+      new AutoMove(-0.1, 0.3).withTimeout(1.7),
+
+      //move forward to other side
+      new AutoMove(0.2, 0.2).withTimeout(0.8),
+
+      //turn right to angle downfeild
+      new AutoMove(0.3, -0.2).withTimeout(1.5),
+      new AutoMove(0.2, 0.1).withTimeout(0.5),
+
+      //move forward down the feild
+      new AutoMove(0.4, 0.4).withTimeout(2),
+
+      // * * * GOT TO HERE IN TESTING * * * 
+
+      //turn left, move through cones, turn right (two stages)
+      new AutoMove(-0.2, 0.3).withTimeout(1),
+      new AutoMove(0.3, 0.3).withTimeout(1.4),
+      new AutoMove(0.3, -0.2).withTimeout(0.95),
+      new AutoMove(0.2, 0.1).withTimeout(0.2),
+
+      //move forward... INTO THE GOAL!
+      new AutoMove(0.2, 0.2).withTimeout(1.5)
     );
   }
 }

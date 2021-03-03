@@ -6,28 +6,61 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.analog.adis16470.frc.ADIS16470_IMU;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class IMU_Gyro extends SubsystemBase {
   private ADIS16470_IMU imu = new ADIS16470_IMU();
   //private AnalogGyro imu_gyro = new AnalogGyro(Constants.gyro_port);      //<<< not sure if necessary
+  private double angle, rate;
   
   
 
   /** Creates a new IMU_Gyro. */
   public IMU_Gyro() {
-    //imu.setYawAxis(Constants.imu_yaw);
-    //imu.configCalTime(Constants.imu_caltime);
+    imu.setYawAxis(Constants.imu_yaw);
+    imu.configCalTime(Constants.imu_caltime);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    rate = currentRate();
+    angle = currentAngle();
   }
 
+  /**
+   * @return rotation in DEGREES per SECOND
+   */
+  public double currentRate(){ 
+    return imu.getRate();
+  }
+
+  /**
+   * @return the CURRENT ANGLE (total since last calibration) of the YAW axis (this can be changed in Constants)
+   */
   public double currentAngle(){
-    double ang = imu.getAngle();
-    return ang;
+    return imu.getAngle();
+  }
+
+  /**
+   * Make sure the robot doesn't move while recalibrating
+   */
+  public void recalibrate(){
+    imu.calibrate();
+  }
+
+  /**
+   * Call this periodically if it is intended to update with each scheduler run
+   */
+  public void DashboardAngle(){
+    SmartDashboard.putNumber("Current Angle:", currentAngle());
+  }
+
+  /**
+   * Call this periodically if it is intended to update with each scheduler run
+   */
+  public void DashboardRate(){
+    SmartDashboard.putNumber("Current Rate:", currentRate());
   }
 
   /**THIS METHOD IS MARKED AS V1 AS IT WAS COPIED FROM PREXISTING CODE AND MAY NEED CHANGES TO WORK PROPERLY IN SUBSYSTEM FORMAT    

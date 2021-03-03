@@ -91,8 +91,8 @@ public final class Constants{
                 
         //IMU/gyro
         public static final int gyro_port = 0;
-        // public static final IMUAxis imu_yaw = null;
-        // public static final ADIS16470CalibrationTime imu_caltime = null;
+        public static final IMUAxis imu_yaw = IMUAxis.kY;
+        public static final ADIS16470CalibrationTime imu_caltime = ADIS16470CalibrationTime._8s;
 
         //camera array (ports)
         public static final int cam1_port = 0;

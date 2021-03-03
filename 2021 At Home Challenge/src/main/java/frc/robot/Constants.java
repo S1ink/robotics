@@ -74,7 +74,7 @@ public final class Constants{
             public static boolean default_squareinp = false;
             //invert boolean for each side
             public static boolean db_left_invt = false;
-            public static boolean db_right_invt = true;
+            public static boolean db_right_invt = false;
             //multipliers for each stick axis
             public static double c1_left_Y_mult = -0.5;
             public static double c1_right_Y_mult = -0.5;
