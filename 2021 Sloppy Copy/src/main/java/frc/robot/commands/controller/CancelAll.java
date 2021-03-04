@@ -2,37 +2,33 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.controller;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class AutoMove extends CommandBase {
-  private double lspeed, rspeed;
-
-  public AutoMove(double leftspeed, double rightspeed) {
-    addRequirements(RobotContainer.db_main);
-    lspeed = leftspeed;
-    rspeed = rightspeed;
+public class CancelAll extends CommandBase {
+  /** Creates a new CancelAll. */
+  public CancelAll() {
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    //smoothen out?
-    //RobotContainer.db_main.tank_drive(lspeed/2, rspeed/2);
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.db_main.tank_drive(lspeed, rspeed);
+    RobotContainer.linefollow.cancel();
+    RobotContainer.sense_periodic.cancel();
+    RobotContainer.teleop_drive.cancel();
+    RobotContainer.slolom.cancel();
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override

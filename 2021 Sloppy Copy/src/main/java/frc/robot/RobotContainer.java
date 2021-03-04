@@ -4,20 +4,20 @@
 
 package frc.robot;
 
-import frc.robot.commands.AutoLine;
-import frc.robot.commands.TeleopDrive;
+import frc.robot.commands.drivefunctions.AutoLine;
+import frc.robot.commands.drivefunctions.TeleopDrive;
 import frc.robot.commands.groups.Slolom;
-import frc.robot.commands.SensorDebug;
-import frc.robot.commands.SwapController;
-import frc.robot.commands.CancelAll;
+import frc.robot.commands.sensors.SensorDebug;
+import frc.robot.commands.controller.SwapController;
+import frc.robot.commands.controller.CancelAll;
 import frc.robot.subsystems.CameraArray;
 import frc.robot.subsystems.ColorSense;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IMU_Gyro;
 import frc.robot.subsystems.UltrasonicArray;
 import frc.robot.subsystems.UserInput;
-import frc.robot.commands.DriveMode;
-import frc.robot.commands.Decelerate;
+import frc.robot.commands.controller.DriveMode;
+import frc.robot.commands.drivefunctions.Decelerate;
 
 public class RobotContainer {
   //automated update functions
@@ -26,7 +26,7 @@ public class RobotContainer {
   //subsystem instance creation
   public static DriveTrain db_main = new DriveTrain();
   public static ColorSense colorsrc = new ColorSense();
-  public static IMU_Gyro spi_imu = new IMU_Gyro();
+  public static IMU_Gyro imu = new IMU_Gyro();
   //public static CameraArray camarr = new CameraArray();
   //public static UltrasonicArray sonic = new UltrasonicArray();
   public static UserInput input = new UserInput();

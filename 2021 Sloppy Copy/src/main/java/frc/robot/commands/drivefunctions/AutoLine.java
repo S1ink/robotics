@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 //SPLIT THIS FILE UP WHEN POSSIBLE, TO CREATE A COMMAND FOR EACH DIFFERENT AUTONOMOUS PROFILE
-package frc.robot.commands;
+package frc.robot.commands.drivefunctions;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;

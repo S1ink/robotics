@@ -29,8 +29,15 @@ public class DriveTrain extends SubsystemBase {
     db_left.setInverted(Constants.db_left_invt);
   }
 
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+    
+  }
 
-//start of custom methods
+
+  // * * * * * Start of custom methods * * * * * 
+
   public void tank_drive(double left_speed, double right_speed){
     drive_main.tankDrive(left_speed, right_speed, Constants.default_squareinp);
   }
@@ -114,11 +121,6 @@ public class DriveTrain extends SubsystemBase {
 
 
 //default periodic functions
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
-
   @Override
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation

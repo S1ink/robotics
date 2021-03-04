@@ -7,12 +7,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.analog.adis16470.frc.ADIS16470_IMU;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 
 public class IMU_Gyro extends SubsystemBase {
   private ADIS16470_IMU imu = new ADIS16470_IMU();
+  private BuiltInAccelerometer rioAcc = new BuiltInAccelerometer();
   //private AnalogGyro imu_gyro = new AnalogGyro(Constants.gyro_port);      //<<< not sure if necessary
   private double angle, rate;
-  
   
 
   /** Creates a new IMU_Gyro. */
@@ -39,7 +40,44 @@ public class IMU_Gyro extends SubsystemBase {
    * @return the CURRENT ANGLE (total since last calibration) of the YAW axis (this can be changed in Constants)
    */
   public double currentAngle(){
+    //note: a positive angle is in the clockwise direction
     return imu.getAngle();
+  }
+
+  public double imuX(){
+    return imu.getAccelInstantX();
+  }
+
+  public double imuY(){
+    return imu.getAccelInstantY();
+  }
+
+  public double imuZ(){
+    return imu.getAccelInstantZ();
+  }
+
+  /**
+   * 
+   * @return returns in G-FORCES, so make sure to convert to something useful
+   */
+  public double rioX(){
+    return rioAcc.getX();
+  }
+
+  /**
+   * 
+   * @return returns in G-FORCES, so make sure to convert to something useful
+   */
+  public double rioY(){
+    return rioAcc.getY();
+  }
+
+  /**
+   * 
+   * @return returns in G-FORCES, so make sure to convert to something useful
+   */
+  public double rioZ(){
+    return rioAcc.getZ();
   }
 
   /**
