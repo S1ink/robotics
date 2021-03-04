@@ -1,10 +1,10 @@
 # Info
-These are my personal projects along with work from others done for the First Robotics Competition team 3407. Official code can be found here: https://github.com/FRC3407
+These are my personal contributions along with work from others done for the First Robotics Competition team 3407. Official code can be found here: https://github.com/FRC3407
 
 # Organization
-- Projects are first organized by year, if that year is completed, otherwise the projects from the current year are not. 
-- From 2021 onward, Projects consist of a "Sloppy Copy", or just a project with all subsystems and commands working, and a project designated for the challenge of that year. 
-- Other projects may consist of tests or other things from that year. 
+This is how the upper level folders are organized:
+- Projects are first organized by year, if that year is completed, otherwise the projects from the current year are available without a folder. 
+- Projects include a "Sloppy Copy", which is where everything is first tested and figured out. Additionally there is a final version for the challenge of that year, and other test projects. 
 
 # 3rd Party Libraries
 3rd party libs will need to be installed separately, at least atm. These can be installed via an online link or manual download and install (Install info can be found on vendor websites or from https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html). Components in use that require separate libraries include:
