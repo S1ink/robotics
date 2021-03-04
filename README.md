@@ -1,5 +1,5 @@
 # Info
-Personal code projects (java) for ["First" or "FRC"] robotics team 3407.
+These are my personal projects along with work from others done for the First Robotics Competition team 3407. Official code can be found here: https://github.com/FRC3407
 
 # Organization
 - Projects are first organized by year, if that year is completed, otherwise the projects from the current year are not. 
