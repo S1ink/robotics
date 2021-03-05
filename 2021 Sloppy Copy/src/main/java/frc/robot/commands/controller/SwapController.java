@@ -15,6 +15,7 @@ public class SwapController extends CommandBase {
   /** Creates a new SwapController. */
   public SwapController() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.input);
   }
 
   // Called when the command is initially scheduled.
@@ -27,6 +28,7 @@ public class SwapController extends CommandBase {
     }
     RobotContainer.dynamics.setmode(Dynamics.controllerlayout);
     System.out.println("layout swaped");
+    //RobotContainer.input.updateButtons();
     finished = true;
   }
 

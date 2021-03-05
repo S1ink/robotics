@@ -18,6 +18,7 @@ import frc.robot.subsystems.UltrasonicArray;
 import frc.robot.subsystems.UserInput;
 import frc.robot.commands.controller.DriveMode;
 import frc.robot.commands.drivefunctions.Decelerate;
+import frc.robot.commands.sensors.Distance;
 
 public class RobotContainer {
   //automated update functions
@@ -32,6 +33,7 @@ public class RobotContainer {
   public static UserInput input = new UserInput();
   
   //commmand declaration
+  public static Distance distance;
   public static Slolom slolom;
   public static AutoLine linefollow;
   public static TeleopDrive teleop_drive;
@@ -43,6 +45,7 @@ public class RobotContainer {
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
+      distance = new Distance(false, true);
       drivemode_left = new DriveMode(true, false);
       drivemode_right = new DriveMode(false, true);
       slolom = new Slolom(null);

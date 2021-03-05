@@ -15,13 +15,12 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
       robotContainer = new RobotContainer(); 
-      //RobotContainer.dynamics.setmode(Constants.controlmode);
     }
     //remember to add "CommandScheduler.getInstance().run();" inside as this is necessary for anything depending on the scheduler to run
     @Override
     public void robotPeriodic() {
+      Dynamics.periodtime = getPeriod();
       CommandScheduler.getInstance().run();
-      //RobotContainer.camarr.start_streams(true, false, false);
     }
 
     
@@ -29,6 +28,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
       RobotContainer.teleop_drive.schedule();
+      //RobotContainer.distance.schedule();
     }
     @Override
     public void teleopPeriodic() {}

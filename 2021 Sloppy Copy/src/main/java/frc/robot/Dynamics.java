@@ -1,6 +1,8 @@
 package frc.robot;
 
 public final class Dynamics{
+    public static double periodtime;
+
     //controller layout map -> this this makes it more simple to just access a controller button, and let the actual layout used be determined elsewhere
     public static int controllerButton_A;
     public static int controllerButton_B;
@@ -19,7 +21,7 @@ public final class Dynamics{
     public static int controllerTrigger_l;
     public static int controllerTrigger_r;
 
-    public static String controllerlayout = Constants.controlmode;
+    public static String controllerlayout = Constants.defaultcontrolmode;
 
     //Software config/calibration -> dynamic in the future?
         //drivebase motor/controlling options
@@ -42,7 +44,7 @@ public final class Dynamics{
             public static int power = 2;
 
     public Dynamics(){
-        setmode(Constants.controlmode);
+        setmode(controllerlayout);
     } 
 
     // public void setdrivemode(int direction){

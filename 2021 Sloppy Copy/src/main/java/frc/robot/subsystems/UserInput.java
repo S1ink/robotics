@@ -14,23 +14,39 @@ public class UserInput extends SubsystemBase {
   
   //setup controllers and buttons
   public XboxController Controller = new XboxController(Constants.controller_port);
-  public JoystickButton Xbutton = new JoystickButton(Controller, Dynamics.controllerButton_X);
-  public JoystickButton Ybutton = new JoystickButton(Controller, Dynamics.controllerButton_Y);
-  public JoystickButton Abutton = new JoystickButton(Controller, Dynamics.controllerButton_A);
-  public JoystickButton Bbutton = new JoystickButton(Controller, Dynamics.controllerButton_B);
-  public JoystickButton menubutton = new JoystickButton(Controller, Dynamics.controllerButton_menu);
-  public JoystickButton homebutton = new JoystickButton(Controller, Dynamics.controllerButton_home);
-  public JoystickButton leftbutton = new JoystickButton(Controller, Dynamics.controllerButton_lb);
-  public JoystickButton rightbutton = new JoystickButton(Controller, Dynamics.controllerButton_rb);
-  public JoystickButton lstickbutton = new JoystickButton(Controller, Dynamics.controllerButton_ls);
-  public JoystickButton rstickbutton = new JoystickButton(Controller, Dynamics.controllerButton_rs);
+  public JoystickButton Xbutton;
+  public JoystickButton Ybutton;
+  public JoystickButton Abutton;
+  public JoystickButton Bbutton;
+  public JoystickButton menubutton;
+  public JoystickButton homebutton;
+  public JoystickButton leftbutton;
+  public JoystickButton rightbutton;
+  public JoystickButton lstickbutton;
+  public JoystickButton rstickbutton;
   
   /** Creates a new UserInput. */
-  public UserInput(){}
+  public UserInput(){
+    updateButtons();
+  }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    //updateButtons();
+  }
+
+  public void updateButtons(){
+    Xbutton = new JoystickButton(Controller, Dynamics.controllerButton_X);
+    Ybutton = new JoystickButton(Controller, Dynamics.controllerButton_Y);
+    Abutton = new JoystickButton(Controller, Dynamics.controllerButton_A);
+    Bbutton = new JoystickButton(Controller, Dynamics.controllerButton_B);
+    menubutton = new JoystickButton(Controller, Dynamics.controllerButton_menu);
+    homebutton = new JoystickButton(Controller, Dynamics.controllerButton_home);
+    leftbutton = new JoystickButton(Controller, Dynamics.controllerButton_lb);
+    rightbutton = new JoystickButton(Controller, Dynamics.controllerButton_rb);
+    lstickbutton = new JoystickButton(Controller, Dynamics.controllerButton_ls);
+    rstickbutton = new JoystickButton(Controller, Dynamics.controllerButton_rs);
   }
 
   public double ControllerAxis_raw(int axis){

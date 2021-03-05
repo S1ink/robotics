@@ -78,48 +78,6 @@ public class DriveTrain extends SubsystemBase {
 
 
 
-
-
-  // * * * * * * IMU BASED AUTONOMOUS MOVEMENT * * * * * *
-   
-  //Just kidding, everything that would go here would require being updated on every scheduler run, so they will need to be turned into commands        
-
-
-
-
-
-  // public void imuStraight(double speed){
-  //   drive_main.tankDrive(speed, speed);
-  // }
-
-  // /**HAS NOT BEEN TESTED.
-  //  * This function WILL have bugs, and it is probably not written the correct way, so be warned. 
-  //  * 
-  //  * @param degrees - the degrees to turn -> positive is a right turn, negative is a left turn
-  //  * @param speed - the speed in which the motors will go throughout the turn
-  //  */
-  // public void correcturn(double degrees, double speed){
-  //   double correct = RobotContainer.spi_imu.currentAngle();
-  //   double comparr[] = {correct};
-  //   double diff = Math.abs(Math.abs(comparr[0]) - Math.abs(correct));
-  //   double vectortarget = Math.copySign(diff, degrees);
-  //   if(degrees > 0){
-  //     while(degrees <= vectortarget){
-  //       drive_main.tankDrive(speed, -speed);
-  //     }
-  //   }else if(degrees < 0){
-  //     while(degrees >= vectortarget){
-  //       drive_main.tankDrive(-speed, speed);
-  //     }
-  //   }
-  // }
-  
-
-
-
-
-
-
 //default periodic functions
   @Override
   public void simulationPeriodic() {

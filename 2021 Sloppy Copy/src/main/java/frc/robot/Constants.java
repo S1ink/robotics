@@ -12,7 +12,7 @@ public final class Constants{
     //Hardware config
         //Controller layout - layouts are defined here -> can be used as-is, or, can access basic buttons through the input instance of UserInput, which will give the layout based on what controlmode is set
         //In order for buttons, sticks, etc. to be set, the setcontrolmode method, which is under UserInput, must be run at startup, or could be run continuously to make it so keybinds could be changed dynamically
-        public static String controlmode = "xbox";
+        public static String defaultcontrolmode = "xbox";
         public static final int controller_port = 0;
             //xbox controller keybinds
             public static final int x_controllerButton_A = 1;

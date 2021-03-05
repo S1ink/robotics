@@ -56,8 +56,19 @@ public class IMU_Gyro extends SubsystemBase {
     return imu.getAccelInstantZ();
   }
 
+  public double imuX_si(){
+    return imu.getAccelInstantX() * 9.81;
+  }
+
+  public double imuY_si(){
+    return imu.getAccelInstantY() * 9.81;
+  }
+
+  public double imuZ_si(){
+    return imu.getAccelInstantZ() * 9.81;
+  }
+
   /**
-   * 
    * @return returns in G-FORCES, so make sure to convert to something useful
    */
   public double rioX(){
@@ -65,7 +76,6 @@ public class IMU_Gyro extends SubsystemBase {
   }
 
   /**
-   * 
    * @return returns in G-FORCES, so make sure to convert to something useful
    */
   public double rioY(){
@@ -73,11 +83,34 @@ public class IMU_Gyro extends SubsystemBase {
   }
 
   /**
-   * 
    * @return returns in G-FORCES, so make sure to convert to something useful
    */
   public double rioZ(){
     return rioAcc.getZ();
+  }
+
+  public double rioX_si(){
+    return rioAcc.getX() * 9.81;
+  }
+
+  public double rioY_si(){
+    return rioAcc.getY() * 9.81;
+  }
+
+  public double rioZ_si(){
+    return rioAcc.getZ() * 9.81;
+  }
+
+  public double avgX(){
+    return (rioAcc.getX() + imu.getAccelInstantX()) /2;
+  }
+
+  public double avgY(){
+    return (rioAcc.getY() + imu.getAccelInstantY()) /2;
+  }
+
+  public double avgZ(){
+    return (rioAcc.getZ() + imu.getAccelInstantZ()) /2;
   }
 
   /**
@@ -101,62 +134,61 @@ public class IMU_Gyro extends SubsystemBase {
     SmartDashboard.putNumber("Current Rate:", currentRate());
   }
 
-  /**THIS METHOD IS MARKED AS V1 AS IT WAS COPIED FROM PREXISTING CODE AND MAY NEED CHANGES TO WORK PROPERLY IN SUBSYSTEM FORMAT    
-  Returns array of doubles correstponding to the distance moved within the time period. 
-  The parameter "period_time" refers to the time between periods which can be gotten with "getPeriod()" (Unable to use this method outside of Robot.java). */
-  public double[] accelDist_v1(double period_time){
-    double[] pos = {0.0, 0.0, 0.0};
-    double accelX[] = {0,0,0,0,0,0,0,0,0,0};
-    double accelY[] = {0,0,0,0,0,0,0,0,0,0};
-    double accelZ[] = {0,0,0,0,0,0,0,0,0,0};
-    int i = 0;
-    double distanceX = 0;
-    double distanceY = 0;
-    double distanceZ = 0;
-    double sum;
-    double dt = period_time;
 
-    //run a loop of ten
-    while (i<=9){
-      //fill up array with values from imu (there are ten spots and the loop runs 10 times)
-      accelX[i] += imu.getAccelInstantX() * 9.8;
-      accelY[i] += imu.getAccelInstantY() * 9.8;
-      accelZ[i] += imu.getAccelInstantZ() * 9.8;
-      //add one
-      i ++;
-    }
 
-    //X-axis -> average all values and store in distanceX 
-    sum = 0;
-    for(int j=0; j<10; j++){
-      sum += accelX[j];
-    }
-    sum /= 10;
-    distanceX += sum * dt;
 
-    //Y-axis -> average all values and store in distanceY
-    sum = 0;
-    for(int j=0; j<10; j++){
-      sum += accelY[j];
-    }
-    sum /= 10;
-    distanceY += sum * dt;
+  // public double[] accelDist_v1(double period_time){
+  //   double[] pos = {0.0, 0.0, 0.0};
+  //   double accelX[] = {0,0,0,0,0,0,0,0,0,0};
+  //   double accelY[] = {0,0,0,0,0,0,0,0,0,0};
+  //   double accelZ[] = {0,0,0,0,0,0,0,0,0,0};
+  //   int i = 0;
+  //   double distanceX = 0;
+  //   double distanceY = 0;
+  //   double distanceZ = 0;
+  //   double sum;
+  //   double dt = period_time;
+  //   dt = 0.02;
 
-    //Z-axis -> average all values and store in disanceZ
-    sum = 0;
-    for(int j=0; j<10; j++){
-      sum += accelZ[j];
-    }
-    sum /= 10;
-    distanceZ += sum * dt;
+  //   //run a loop of ten
+  //   while(i++ <=9){
+  //     //fill up array with values from imu (there are ten spots and the loop runs 10 times)
+  //     accelX[i] = imu.getAccelInstantX() * 9.81;
+  //     accelY[i] = imu.getAccelInstantY() * 9.81;
+  //     accelZ[i] = imu.getAccelInstantZ() * 9.81;
+  //   }
 
-    //set places in the array that will be returned equal to the values gotten above
-    pos[0] = distanceX;
-    pos[1] = distanceY;
-    pos[2] = distanceZ;  
+  //   //X-axis -> average all values and store in distanceX 
+  //   sum = 0;
+  //   for(int j=0; j<10; j++){
+  //     sum += accelX[j];
+  //   }
+  //   sum /= 10;
+  //   distanceX = sum * dt;
 
-    //return positions
-    return pos;
-  }
+  //   //Y-axis -> average all values and store in distanceY
+  //   sum = 0;
+  //   for(int j=0; j<10; j++){
+  //     sum += accelY[j];
+  //   }
+  //   sum /= 10;
+  //   distanceY = sum * dt;
+
+  //   //Z-axis -> average all values and store in disanceZ
+  //   sum = 0;
+  //   for(int j=0; j<10; j++){
+  //     sum += accelZ[j];
+  //   }
+  //   sum /= 10;
+  //   distanceZ = sum * dt;
+
+  //   //set places in the array that will be returned equal to the values gotten above
+  //   pos[0] = distanceX;
+  //   pos[1] = distanceY;
+  //   pos[2] = distanceZ;  
+
+  //   //return positions
+  //   return pos;
+  // }
 
 }
