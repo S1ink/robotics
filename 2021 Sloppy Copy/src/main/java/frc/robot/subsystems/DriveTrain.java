@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import frc.robot.Constants;
+import frc.robot.Dynamics;
 import frc.robot.RobotContainer;
 
 public class DriveTrain extends SubsystemBase {
@@ -25,8 +26,8 @@ public class DriveTrain extends SubsystemBase {
 //Constructor method
   /** Creates a new DriveTrain. */
   public DriveTrain(){
-    db_right.setInverted(Constants.db_right_invt);
-    db_left.setInverted(Constants.db_left_invt);
+    db_right.setInverted(Dynamics.db_right_invt);
+    db_left.setInverted(Dynamics.db_left_invt);
   }
 
   @Override
@@ -39,21 +40,21 @@ public class DriveTrain extends SubsystemBase {
   // * * * * * Start of custom methods * * * * * 
 
   public void tank_drive(double left_speed, double right_speed){
-    drive_main.tankDrive(left_speed, right_speed, Constants.default_squareinp);
+    drive_main.tankDrive(left_speed, right_speed, Dynamics.default_squareinp);
   }
 
   public void arcade_drive(double x_axis, double y_axis){
-    drive_main.arcadeDrive(x_axis, y_axis, Constants.default_squareinp);
+    drive_main.arcadeDrive(x_axis, y_axis, Dynamics.default_squareinp);
   }
 
   /**The point of this method is for the controller triggers to be the forward and backwards parameters, and the rotation to be the x-axis of one of the sticks (left and right) */
   public void race_drive(double forward, double backward, double rotation){
     double cumulative = forward - backward;
-    drive_main.arcadeDrive(cumulative, rotation, Constants.default_squareinp);
+    drive_main.arcadeDrive(cumulative, rotation, Dynamics.default_squareinp);
   }
 
   public void trigger_drive(double ltrig, double rtrig){
-    drive_main.tankDrive(ltrig, rtrig, Constants.default_squareinp);
+    drive_main.tankDrive(ltrig, rtrig, Dynamics.default_squareinp);
   }
 
   //basic side control

@@ -9,6 +9,7 @@ import frc.robot.commands.drivefunctions.TeleopDrive;
 import frc.robot.commands.groups.Slolom;
 import frc.robot.commands.sensors.SensorDebug;
 import frc.robot.commands.controller.SwapController;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.controller.CancelAll;
 import frc.robot.subsystems.CameraArray;
 import frc.robot.subsystems.ColorSense;
@@ -64,8 +65,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {
-    input.menubutton.whenHeld(stop);
+  public void configureButtonBindings() {
+    CommandScheduler.getInstance().clearButtons();
+    input.menubutton.whenPressed(stop);
     input.homebutton.whenPressed(swap);
     input.leftbutton.whenPressed(drivemode_left);
     input.rightbutton.whenPressed(drivemode_right);

@@ -5,7 +5,9 @@
 package frc.robot.commands.controller;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Dynamics;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 /**
  * THIS COMMAND DOES NOT WORK BECAUSE THE USERINPUT CLASS DOES NOT DYNAMICALLY UPDATE WITH THE LAYOUT VARIABLES.
@@ -15,20 +17,23 @@ public class SwapController extends CommandBase {
   /** Creates a new SwapController. */
   public SwapController() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.input);
+    //addRequirements(RobotContainer.input);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.teleop_drive.cancel();
     if(Dynamics.controllerlayout.equals("xbox")){
       Dynamics.controllerlayout = "logitech";
     }else if(Dynamics.controllerlayout.equals("logitech")){
       Dynamics.controllerlayout = "xbox";
     }
     RobotContainer.dynamics.setmode(Dynamics.controllerlayout);
+    RobotContainer.input.updateButtons();
     System.out.println("layout swaped");
-    //RobotContainer.input.updateButtons();
+    Robot.robotContainer.configureButtonBindings();
+    RobotContainer.teleop_drive.schedule();
     finished = true;
   }
 

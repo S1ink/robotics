@@ -91,7 +91,7 @@ public class TeleopDrive extends CommandBase {
         leftOutput = maxInput;
         rightOutput = xSpeed - zRotation;
       }}
-    if(Constants.db_right_invt){right_invt = -1;}
+    if(Dynamics.db_right_invt){right_invt = -1;}
     ret[0] = (MathUtil.clamp(leftOutput, -1.0, 1.0));
     ret[1] = (MathUtil.clamp(rightOutput, -1.0, 1.0) * right_invt);
     return ret;

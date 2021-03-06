@@ -15,7 +15,7 @@ public class GyroStraight extends CommandBase {
     addRequirements(RobotContainer.db_main);
     addRequirements(RobotContainer.imu);
     this.speed = speed;
-    this.speed = speed;
+    //this.speed = speed;
     this.proportion = PasinPID;
   }
 

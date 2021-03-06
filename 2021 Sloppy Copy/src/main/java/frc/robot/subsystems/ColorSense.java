@@ -11,11 +11,14 @@ import com.revrobotics.ColorSensorV3.ColorSensorMeasurementRate;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3.ColorSensorResolution;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.util.Color;
 
 public class ColorSense extends SubsystemBase {
   //colorsensors
   private ColorSensorV3 colorsrc = new ColorSensorV3(Constants.colorsensor_port);
   //private ColorSensorV3 colorsrc2 = new ColorSensorV3(Constants.colorsensor2_port);     //WILL NEED FIXING IF THERE ARE ACTUALLY TWO COLORSENSORS
+
+  private ColorMatch colormatcher = new ColorMatch();
   
   private double[] ycal = Constants.yellow;
   private double[] gcal = Constants.green;
@@ -28,6 +31,26 @@ public class ColorSense extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  public void addMatchColor(double red, double green, double blue){
+    colormatcher.addColorMatch(ColorMatch.makeColor(red, green, blue));
+  }
+
+  /**
+   * Make sure to add colors to match to with the addMatchColor method before running this!
+   * @return Returns an array of doubles with an index of 4 - the first 3 indexes are the rgb values (of the color that it found a match to, 
+   * so compare these to the values you added to addMatchColor to find out what colr it is), the last is the confidence of the match. 
+   */
+  public double[] runcolormatch(){
+    double ret[] = {0, 0, 0, 0};
+    ColorMatchResult match = colormatcher.matchClosestColor(colorsrc.getColor());
+    Color data = match.color;
+    ret[0] = data.red;
+    ret[1] = data.green;
+    ret[2] = data.blue;
+    ret[3] = match.confidence;
+    return ret;
   }
 
   private double magnitude(double red, double green, double blue){

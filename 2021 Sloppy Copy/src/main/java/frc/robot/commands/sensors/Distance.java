@@ -14,7 +14,6 @@ public class Distance extends CommandBase {
   private boolean avg, rio;
 
   /**
-   * 
    * @param avgbetween - boolean on wheather or not to use an average of the imu and internal accelerometer for an input
    * @param rio - boolean for wheather or not to use the rio as the default accelerometer -> for if the above is false
    */
