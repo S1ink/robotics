@@ -19,6 +19,8 @@ import frc.robot.subsystems.UltrasonicArray;
 import frc.robot.subsystems.UserInput;
 import frc.robot.commands.controller.DriveMode;
 import frc.robot.commands.drivefunctions.Decelerate;
+import frc.robot.commands.drivefunctions.GyroStraight;
+import frc.robot.commands.drivefunctions.GyroTurn;
 import frc.robot.commands.sensors.Distance;
 
 public class RobotContainer {
@@ -43,9 +45,13 @@ public class RobotContainer {
   public static SwapController swap;
   public static DriveMode drivemode_left;
   public static DriveMode drivemode_right;
+  public static GyroTurn testurn;
+  public static GyroStraight straight;
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
+      straight = new GyroStraight(0.2, 0.2);
+      testurn = new GyroTurn(0.2, -0.2, 10);
       distance = new Distance(false, true);
       drivemode_left = new DriveMode(true, false);
       drivemode_right = new DriveMode(false, true);

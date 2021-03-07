@@ -37,9 +37,11 @@ public class Robot extends TimedRobot {
     //autonomous mode
     @Override
     public void autonomousInit() {
-      RobotContainer.slolom.schedule();
-      //RobotContainer.sense_periodic.schedule();     //debug
+      //RobotContainer.slolom.schedule();
+      RobotContainer.sense_periodic.schedule();     //debug
       //RobotContainer.auto_routine.schedule();
+      RobotContainer.testurn.schedule();
+      //RobotContainer.straight.schedule();
     }
     @Override
     public void autonomousPeriodic() {}

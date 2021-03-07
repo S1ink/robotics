@@ -9,7 +9,7 @@ import frc.robot.RobotContainer;
 
 public class GyroTurn extends CommandBase {
   //in the future, change to a speed, ratio, and pivotwheel based turn
-  private double lspeed, rspeed, target, initial;
+  private double lspeed, rspeed, target, initial, mult = 1;
   private boolean left = false, right = false, finished = false;
   /**
    * A positive degree value is a right turn, a negative one is a left turn
@@ -38,7 +38,8 @@ public class GyroTurn extends CommandBase {
   @Override
   public void execute() {
     double angle = RobotContainer.imu.currentAngle();
-    double progress = angle - initial;
+    double correctAngle = angle * mult;
+    double progress = correctAngle - initial;
     if(left){
       if(progress >= target){
         finished = true;

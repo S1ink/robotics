@@ -15,13 +15,15 @@ public class SensorDebug extends CommandBase {
   private double rgb[] = RobotContainer.colorsrc.rawcolors(1);
   private int count = 0;
 
+  private double initangle, currentangle;
+
 
   /** Creates a new PeriodiColor. */
   public SensorDebug() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.colorsrc);
+    //addRequirements(RobotContainer.colorsrc);
     //addRequirements(RobotContainer.camarr);
-    //addRequirements(RobotContainer.spi_imu);
+    addRequirements(RobotContainer.imu);
     //addRequirements(RobotContainer.input);
     //addRequirements(RobotContainer.sonic);
   }
@@ -29,15 +31,24 @@ public class SensorDebug extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    coloravg_setup();
+    initangle = RobotContainer.imu.currentAngle();
+    //coloravg_setup();
+    SmartDashboard.putNumber("Initial Angle:", initangle);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    coloravg_periodic();  
+    //coloravg_periodic();  
     //coloravg_lowfreq(25); 
     //colorvalues(1); 
+    currentangle = RobotContainer.imu.currentAngle();
+    SmartDashboard.putNumber("Current Angle:", currentangle);
+    SmartDashboard.putNumber("Current Angular Rate:", RobotContainer.imu.currentRate());
+    SmartDashboard.putNumber("IMU AccX:", RobotContainer.imu.imuX_si());
+    SmartDashboard.putNumber("IMU AccY:", RobotContainer.imu.imuY_si());
+    SmartDashboard.putNumber("IMU AccZ:", RobotContainer.imu.imuZ_si());
+    
   }
 
   // Called once the command ends or is interrupted.
@@ -57,13 +68,13 @@ public class SensorDebug extends CommandBase {
    */
   private void colorvalues(int output){
     if(output == 0){
-      System.out.println(String.valueOf(RobotContainer.colorsrc.red(0)));
-      System.out.println(String.valueOf(RobotContainer.colorsrc.green(0)));
-      System.out.println(String.valueOf(RobotContainer.colorsrc.blue(0)));
+      System.out.println(String.valueOf(RobotContainer.colorsrc.red()));
+      System.out.println(String.valueOf(RobotContainer.colorsrc.green()));
+      System.out.println(String.valueOf(RobotContainer.colorsrc.blue()));
     }else if(output == 1){
-      SmartDashboard.putNumber("Raw Red:", RobotContainer.colorsrc.red(0));
-      SmartDashboard.putNumber("Raw Green:", RobotContainer.colorsrc.green(0));
-      SmartDashboard.putNumber("Raw Blue:", RobotContainer.colorsrc.blue(0));
+      SmartDashboard.putNumber("Raw Red:", RobotContainer.colorsrc.red());
+      SmartDashboard.putNumber("Raw Green:", RobotContainer.colorsrc.green());
+      SmartDashboard.putNumber("Raw Blue:", RobotContainer.colorsrc.blue());
     }
   }
 
@@ -85,9 +96,9 @@ public class SensorDebug extends CommandBase {
   }
 
   private void coloravg_periodic(){
-    double[] red = periodic_avg(RobotContainer.colorsrc.red(1), redarr);
-    double[] green = periodic_avg(RobotContainer.colorsrc.green(1), greenarr);
-    double[] blue = periodic_avg(RobotContainer.colorsrc.blue(1), bluearr);
+    double[] red = periodic_avg(RobotContainer.colorsrc.red(), redarr);
+    double[] green = periodic_avg(RobotContainer.colorsrc.green(), greenarr);
+    double[] blue = periodic_avg(RobotContainer.colorsrc.blue(), bluearr);
     redarr[0] = red[0];
     redarr[1] = red[1];
     redarr[2] = red[2];
