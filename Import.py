@@ -31,9 +31,11 @@ def lastmod_s(item:str=None):
     return os.path.getmtime(item)
 
 
-def syncfolders(csv:str=default_csv):
+def syncfolders(csv:str=default_csv, modcomp:bool=True):
         '''
-        PARAMETER: csv- csv file with coresponding folder source and destination data of folders that will be backed up -> is passed into the function "read_csv" before executed
+        PARAMETER: csv - csv file with coresponding folder source and destination data of folders that will be backed up -> is passed into the function "read_csv" before executed
+
+        PARAMETER: modcomp - whether or not to compare modification times to determine if an update is necessary
         '''
         start = time.perf_counter()
         csvd = read_csv(csv)
@@ -47,14 +49,29 @@ def syncfolders(csv:str=default_csv):
             item = data[count]
             #check if exists
             if dircheck(item.src) and dircheck(item.dest):
-                #compare modification times 
-                src_mod = lastmod_s(item.src)
-                dest_mod = lastmod_s(item.dest)
-                if src_mod <= dest_mod:
-                    print(f'{now}: [{item.name}] was passed\n')
-                elif src_mod > dest_mod:  
+                if(modcomp):
+                    #compare modification times 
+                    src_mod = lastmod_s(item.src)
+                    dest_mod = lastmod_s(item.dest)
+                    if src_mod <= dest_mod:
+                        print(f'{now}: [{item.name}] was passed\n')
+                    elif src_mod > dest_mod:  
+                        print(f'{now}: Saving [{item.name}]...')
+                        #test if dest already exist -> if so replace, if not, just copy
+                        if os.path.exists(item.dest) == True:
+                            print(f'{now}: Removing existing files...')
+                            shutil.rmtree(item.dest)
+                            shutil.copytree(item.src, item.dest)
+                            print(f'{now}: Saved [{item.name}]\n')
+                        else:
+                            print(f'{now}: Saving [{item.name}]...')
+                            shutil.copytree(item.src, item.dest)
+                            print(f'{now}: Saved [{item.name}]\n')
+                    else:
+                        print(f'{now}: Error occured while comparing mod times for [{item.name}]')
+                else:    
                     print(f'{now}: Saving [{item.name}]...')
-                    #test if dest already exist -> if so replace, if not, just copy
+                        #test if dest already exist -> if so replace, if not, just copy
                     if os.path.exists(item.dest) == True:
                         print(f'{now}: Removing existing files...')
                         shutil.rmtree(item.dest)
@@ -64,8 +81,6 @@ def syncfolders(csv:str=default_csv):
                         print(f'{now}: Saving [{item.name}]...')
                         shutil.copytree(item.src, item.dest)
                         print(f'{now}: Saved [{item.name}]\n')
-                else:
-                    print(f'{now}: Error occured while comparing mod times for [{item.name}]')
             elif not dircheck(item.src) and dircheck(item.dest):
                 print(f'{now}: Source directory for [{item.name}] does not exist')
             elif dircheck(item.src) and not dircheck(item.dest):
@@ -122,4 +137,4 @@ class backupsync:
         self.src = src
         self.dest = dest
 
-syncfolders()
+syncfolders(default_csv, False)
