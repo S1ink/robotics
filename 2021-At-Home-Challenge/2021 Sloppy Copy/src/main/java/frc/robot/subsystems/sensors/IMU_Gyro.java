@@ -9,34 +9,57 @@ import com.analog.adis16470.frc.ADIS16470_IMU.ADIS16470CalibrationTime;
 import com.analog.adis16470.frc.ADIS16470_IMU.IMUAxis;
 import frc.robot.Constants;
 import frc.robot.Dynamics;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 
 public class IMU_Gyro extends SubsystemBase {
   private ADIS16470_IMU imu = new ADIS16470_IMU();
-  private BuiltInAccelerometer rio = new BuiltInAccelerometer();  
+  private BuiltInAccelerometer rio = new BuiltInAccelerometer(); 
+  
+  private double accelerationX=0, accelerationY=0, velocityX=0, velocityY=0, distanceX=0, distanceY=0;
 
   /** Creates a new IMU_Gyro. */
   public IMU_Gyro() {
     imu.setYawAxis(Constants.imu_yaw);
     imu.configCalTime(Constants.imu_caltime);
-    Dynamics.initAngle = imu.getAngle();
+    Dynamics.initAngle = currentAngle();
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    updatevars();
+    updatevars_AVG();
+    dynamic_update();
   }
 
+  //this is not the correct way to do it, but I left it in anyway
   public void updatevars(){
-    Dynamics.currentAngle = imu.getAngle();
-    Dynamics.accelerationX = imuX_si();
-    Dynamics.accelerationY = imuY_si();
-    Dynamics.velocityX += (Dynamics.accelerationX*Dynamics.periodtime);
-    Dynamics.velocityY += (Dynamics.accelerationY*Dynamics.periodtime);
-    Dynamics.distanceX += (Dynamics.velocityX*Dynamics.periodtime);
-    Dynamics.distanceY += (Dynamics.velocityY*Dynamics.periodtime);
+    accelerationX = imuX_si();
+    accelerationY = imuY_si();
+    velocityX += (accelerationX*Dynamics.periodtime);
+    velocityY += (accelerationY*Dynamics.periodtime);
+    distanceX += (velocityX*Dynamics.periodtime);
+    distanceY += (velocityY*Dynamics.periodtime);
+  }
+
+  public void updatevars_AVG(){
+    double accX = imuX_si();
+    double accY = imuY_si();
+    distanceX += (velocityX + (((accelerationX + accX)/2) * Dynamics.periodtime))*Dynamics.periodtime;
+    distanceY += (velocityY + (((accelerationY + accY)/2) * Dynamics.periodtime))*Dynamics.periodtime;
+    accelerationX = accX;
+    accelerationY = accY;
+    velocityX += (accelerationX*Dynamics.periodtime);
+    velocityY += (accelerationY*Dynamics.periodtime);
+  }
+
+  public void dynamic_update(){
+    Dynamics.currentAngle = currentAngle();
+    Dynamics.accelerationX = accelerationX;
+    Dynamics.accelerationY = accelerationY;
+    Dynamics.velocityX = velocityX;
+    Dynamics.velocityY = velocityY;
+    Dynamics.distanceX = distanceX;
+    Dynamics.distanceY = distanceY;
   }
 
   /**
@@ -132,6 +155,22 @@ public class IMU_Gyro extends SubsystemBase {
     return (rio.getZ() + imu.getAccelInstantZ()) /2;
   }
 
+  public double imuVelX(){
+    return velocityX;
+  }
+
+  public double imuVelY(){
+    return velocityY;
+  }
+
+  public double imuDistX(){
+    return distanceX;
+  }
+
+  public double imuDistY(){
+    return distanceY;
+  }
+
   /**
    * Make sure the robot doesn't move while recalibrating
    */
@@ -141,19 +180,6 @@ public class IMU_Gyro extends SubsystemBase {
     imu.calibrate();
   }
 
-  /**
-   * Call this periodically if it is intended to update with each scheduler run
-   */
-  public void DashboardAngle(){
-    SmartDashboard.putNumber("Current Angle:", currentAngle());
-  }
-
-  /**
-   * Call this periodically if it is intended to update with each scheduler run
-   */
-  public void DashboardRate(){
-    SmartDashboard.putNumber("Current Rate:", currentRate());
-  }
 
 
 
