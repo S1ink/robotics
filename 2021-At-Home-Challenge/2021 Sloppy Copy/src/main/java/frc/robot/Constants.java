@@ -50,7 +50,12 @@ public final class Constants{
     // * * * * HARDWARE PORT CONFIG  * * * *   
     
         //controller port
-        public static final int controller_port = 0;
+        public static final class Ports {
+            public static final int Xbox = 0;
+            public static final int Logitech = 1;
+            public static final int Extreme3d = 2;
+            public static final int[] Attack3 = {3, 4};
+        }
         
         //drivebase motors (channels)
         public static final int front_left_chan = 3;
@@ -103,39 +108,88 @@ public final class Constants{
         //drivemodes
         public static String drivemodes[] = {"tank", "arcade", "race", "trigger"};
 
-        //xbox controller keybinds
-        public static final int x_controllerButton_A = 1;
-        public static final int x_controllerButton_B = 2;
-        public static final int x_controllerButton_X = 3;
-        public static final int x_controllerButton_Y = 4;
-        public static final int x_controllerButton_menu = 8;
-        public static final int x_controllerButton_home = 7;
-        public static final int x_controllerButton_lb = 5;
-        public static final int x_controllerButton_rb = 6;
-        public static final int x_controllerButton_ls = 9;
-        public static final int x_controllerButton_rs = 10;
-        public static final int x_controllerStick_ly = 1;
-        public static final int x_controllerStick_lx = 0;
-        public static final int x_controllerStick_ry = 5;
-        public static final int x_controllerStick_rx = 4;
-        public static final int x_controllerTrigger_l = 2;
-        public static final int x_controllerTrigger_r = 3;
-        //logitech controller keybinds
-        public static final int l_controllerButton_A = 1;
-        public static final int l_controllerButton_B = 2;
-        public static final int l_controllerButton_X = 0;
-        public static final int l_controllerButton_Y = 3;
-        public static final int l_controllerButton_menu = 9;
-        public static final int l_controllerButton_home = 10;
-        // public static final int l_controllerButton_lb = ;
-        // public static final int l_controllerButton_rb = ;
-        // public static final int l_controllerButton_ls = ;
-        // public static final int l_controllerButton_rs = ;
-        public static final int l_controllerStick_ly = 1;
-        public static final int l_controllerStick_lx = 0;
-        public static final int l_controllerStick_ry = 3;
-        public static final int l_controllerStick_rx = 2;
-        public static final int l_controllerTrigger_l = 0;
-        public static final int l_controllerTrigger_r = 0;
+        //Xbox controller layout - can also apply to the logitech controller if it is switched that way with the switch on the back of it
+        public static final class Xbox{
+            public static final int LX = 0;
+            public static final int LY = 1;
+            public static final int RX = 4;
+            public static final int RY = 5;
+            public static final int LT = 2;
+            public static final int RT = 3;
 
+            public static final int A = 1;
+            public static final int B = 2;
+            public static final int X = 3;
+            public static final int Y = 4;
+            public static final int LB = 5;
+            public static final int RB = 6;
+            public static final int Home = 7; //*
+            public static final int Menu = 8; //*
+            public static final int LS = 9;
+            public static final int RS = 10;
+        }
+
+        //The layout for the logitech controller when not in xbox layout
+        public static final class Logi{
+            public static final int LX = 0;
+            public static final int LY = 1;
+            public static final int RX = 2;
+            public static final int RY = 3;
+
+            public static final int LT = 4; //*
+            public static final int RT = 5; //*
+
+            public static final int A = 2;
+            public static final int B = 3;
+            public static final int X = 1;
+            public static final int Y = 4;
+            public static final int LB = 5;
+            public static final int RB = 6;
+            public static final int Home = 10; //*
+            public static final int Menu = 9; //*
+            public static final int LS = 7;
+            public static final int RS = 8;
+        }
+
+        //"Logitech Atk3" arcade stick layout - "Top" means that the button is on the head of the stick, S-Axis is the slider on the back
+        public static final class Atk3{
+            public static final int X_Axis = 0;
+            public static final int Y_Axis = 1;
+            public static final int S_Axis = 2;
+
+            public static final int Trigger = 1;
+
+            public static final int Top_Bottom = 2;
+            public static final int Top_Top = 3;
+            public static final int Top_Left = 4;
+            public static final int Top_Right = 5;
+            public static final int B1 = 6;
+            public static final int B2 = 7;
+            public static final int B3 = 8;
+            public static final int B4 = 9;
+            public static final int B5 = 10;
+            public static final int B6 = 11;
+        }
+
+        //"Extreme 3D Pro" arcade stick layout - "Top" means on the top of the stick, S-Axis is the slider on the back
+        public final class Ex3d{
+            public static final int X_Axis = 0;
+            public static final int Y_Axis = 1;
+            public static final int Z_Axis = 2; //rotation
+            public static final int S_Axis = 3;
+
+            public static final int Trigger = 1;
+            public static final int Side = 2;
+
+            public static final int Top_Left_Bottom = 3;
+            public static final int Top_Right_Bottom = 4;
+            public static final int Top_Left_Top = 5;
+            public static final int Top_Right_Top = 6;
+            public static final int B7 = 7;
+            public static final int B8 = 8;
+            public static final int B9 = 9;
+            public static final int B10 = 10;
+            public static final int B11 = 11;
+            public static final int B12 = 12;
+        }
 }
