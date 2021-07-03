@@ -1,5 +1,5 @@
 # Info
-These are my personal contributions along with work from others done for the First Robotics Competition team 3407. Official code can be found here: https://github.com/FRC3407
+Personal contributions along with work from others done for the First Robotics Competition team 3407. Official code can be found here: https://github.com/FRC3407
 
 # Organization
 This is how the upper level folders are organized:
